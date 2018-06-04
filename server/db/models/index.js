@@ -1,4 +1,16 @@
-const User = require('./user')
+const User = require('./user');
+const OrderHistory = require('./orderHistory');
+const Cart = require('./cart');
+const Restaurant = require('./restaurant');
+const Product = require('./product');
+const PaymentMethod = require('./paymentMethod');
+
+Cart.hasMany(Product, { as: 'items' });
+Cart.belongsTo(User);
+OrderHistory.belongsTo(User);
+Product.belongsTo(Restaurant);
+User.hasMany(PaymentMethod);
+PaymentMethod.belongsTo(User);
 
 /**
  * If we had any associations to make, this would be a great place to put them!
