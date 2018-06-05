@@ -9,8 +9,10 @@ const products = [{id: 1, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-c
 class AllProducts extends Component  {
 
     render(){
+        console.log("We are in allProductsssssss");
         return (
             <div>
+                <h1>We got it!!!!</h1>
                 <div>
                     {
                         props.products.map(product => {
