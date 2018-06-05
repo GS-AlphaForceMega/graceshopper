@@ -26,17 +26,9 @@ class AllProducts extends Component  {
 
 const mapState = state => {
     return {
-      isLoggedIn: !!state.user.id
+      isLoggedIn: !!state.user.id,
+      products: state.products
     }
-  }
-  
-  const mapDispatch = dispatch => {
-    return {
-      handleClick() {
-        dispatch(logout())
-      }
-    }
-  }
-  
+  } 
 
-export default connect(mapState, mapDispatch)(AllProducts)
+export default connect(mapState)(AllProducts)
