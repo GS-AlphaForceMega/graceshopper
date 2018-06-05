@@ -9,6 +9,9 @@ const Restaurant = db.define('restaurant', {
             notEmpty: true
         }
     },
+    cuisine: {
+        type: Sequelize.STRING
+    },
     imageUrl: {
         type: Sequelize.STRING,
         defaultValue: 'https://www.coastal.com/thelook/wp-uploads/2015/02/Dogs-in-Derek-Cardigans-0109.jpg'

@@ -18,7 +18,7 @@ const PaymentMethod = db.define('paymentMethod', {
         type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
-            min: 00,
+            min: 0,
             max: 99
         }
     },

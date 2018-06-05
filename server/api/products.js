@@ -20,8 +20,14 @@ router.post('/', (req, res, next) => {
         .catch(next);
 });
 
+router.put('/:id', (req, res, next) => {
+    Product.update(req.body, { where: { id: req.params.id } })
+        .then(product => res.json(product))
+        .catch(next);
+});
+
 router.delete('/:id', (req, res, next) => {
-    Product.destroy(req.params.id)
+    Product.destroy({ where: { id: req.params.id } })
         .then(product => res.send(product))
         .catch(next);
 });
