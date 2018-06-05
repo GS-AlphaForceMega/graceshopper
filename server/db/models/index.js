@@ -1,5 +1,5 @@
 const User = require('./user');
-const OrderHistory = require('./orderHistory');
+const Order = require('./order');
 const Cart = require('./cart');
 const Restaurant = require('./restaurant');
 const Product = require('./product');
@@ -7,7 +7,8 @@ const PaymentMethod = require('./paymentMethod');
 
 Cart.hasMany(Product, { as: 'items' });
 Cart.belongsTo(User);
-OrderHistory.belongsTo(User);
+User.hasMany(Order);
+Order.hasOne(Product);
 Product.belongsTo(Restaurant);
 User.hasMany(PaymentMethod);
 PaymentMethod.belongsTo(User);
@@ -25,6 +26,6 @@ PaymentMethod.belongsTo(User);
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
-module.exports = {
-  User
-}
+// module.exports = {
+//   User
+// }
