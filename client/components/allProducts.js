@@ -12,11 +12,10 @@ class AllProducts extends Component  {
     render(){
         return (
             <div>
-                <h1>We got it!!!!</h1>
                 <div>
                     {
                         this.props.products.map(product => {
-                            return <Link to={`/products/${product.id}`}><ProductPreview product={product}/></Link>;
+                            return <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>;
                         })
                     }
                 </div>
