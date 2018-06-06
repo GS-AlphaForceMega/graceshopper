@@ -11,3 +11,5 @@ const Cart = db.define('cart', {
 });
 
 module.exports = Cart;
+
+// This will be deleted

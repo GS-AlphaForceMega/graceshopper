@@ -8,15 +8,19 @@ const Product = db.define('product', {
     },
     imageUrl: {
         type: Sequelize.STRING,
-        defaultValue: 'https://www.coastal.com/thelook/wp-uploads/2015/02/Dogs-in-Derek-Cardigans-0109.jpg'
+        defaultValue: 'http://www.gustame-dubrovnik.com/wp-content/uploads/2017/08/Copy-of-BG4A0518-400x400.jpg'
     },
     price: {
-        type: Sequelize.DECIMAL(10,2),
+        type: Sequelize.DECIMAL(10 ,2),
         allowNull: false
     },
     availability: {
         type: Sequelize.BOOLEAN,
         defaultValue: true
+    },
+    cuisine: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
     description: {
         type: Sequelize.TEXT,
@@ -25,10 +29,10 @@ const Product = db.define('product', {
             notEmpty: true
         }
     },
-    limitedQuantity: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
+    // limitedQuantity: {
+    //     type: Sequelize.BOOLEAN,
+    //     defaultValue: false
+    // },
     quantity: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
@@ -36,13 +40,13 @@ const Product = db.define('product', {
             min: 0
         }
     },
-    limitedTime: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
-    expirationDate: {
-        type: Sequelize.DATE
-    }
+    // limitedTime: {
+    //     type: Sequelize.BOOLEAN,
+    //     defaultValue: false
+    // },
+    // expirationDate: {
+    //     type: Sequelize.DATE
+    // }
 });
 
 module.exports = Product;

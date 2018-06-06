@@ -4,14 +4,20 @@ const Cart = require('./cart');
 const Restaurant = require('./restaurant');
 const Product = require('./product');
 const PaymentMethod = require('./paymentMethod');
+const Review = require('./review');
 
 Cart.hasMany(Product, { as: 'items' });
 Cart.belongsTo(User);
 User.hasMany(Order);
 Order.hasOne(Product);
+Order.belongsTo(User); //userId should be able to be null
 Product.belongsTo(Restaurant);
 User.hasMany(PaymentMethod);
 PaymentMethod.belongsTo(User);
+Review.belongsTo(Product);
+Review.belongsTo(User);
+Product.hasMany(Review);
+User.hasMany(Review);
 
 /**
  * If we had any associations to make, this would be a great place to put them!
