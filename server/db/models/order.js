@@ -5,6 +5,10 @@ const Order = db.define('order', {
     items: {
         type: Sequelize.ARRAY(Sequelize.JSON) // [ item = { id, quantity, price } ]
     },
+    placed: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    }
     // price: {
     //     type: Sequelize.DECIMAL(10, 2)
     // },
