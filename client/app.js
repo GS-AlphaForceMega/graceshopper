@@ -1,9 +1,8 @@
 import React from 'react'
-
 import {Navbar} from './components'
 import Routes from './routes'
 import AllProducts from './components/allProducts.js'
-// import Sidebar from './components/sidebar.js'
+import Sidebar from './components/sidebar.js'
 
 
 const App = () => {
@@ -11,7 +10,7 @@ const App = () => {
     <div>
       <Navbar />
       {/* <Routes /> */}
-      {/* <Sidebar /> */}
+      <Sidebar />
       <AllProducts />
     </div>
   )

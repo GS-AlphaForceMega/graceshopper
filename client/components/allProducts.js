@@ -5,22 +5,24 @@ import ProductPreview from './productPreview';
 
 
 const products = [{id: 1, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****', restaurant:{id: 1}},
-{id: 2, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 110, salePrice: 50, review: '****', restaurant:{id: 2}},
-{id: 3, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 105, salePrice: 50, review: '****', restaurant:{id: 3}},
-{id:4, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 120, salePrice: 50, review: '****', restaurant:{id: 4}}]
+{id: 2, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 110, salePrice: 50, review: '****', restaurant:{id: 1}},
+{id: 3, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 105, salePrice: 50, review: '****', restaurant:{id: 2}},
+{id:4, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 120, salePrice: 50, review: '****', restaurant:{id: 2}}]
 const restaurantIds = [1, 2]
 
 class AllProducts extends Component  {
 
     render(){
+        console.log('restaurantIds in AllProducts', this.props.restaurantIds);
+        const restaurantIds = this.props.restaurantIds;
         return (
             <div>
                 <div>
                     {
                         this.props.products.map(product => {
-                            return !this.props.restaurantIds.includes(product.restaurant.id) ? 
+                            return restaurantIds.length >= 1 ? (this.props.restaurantIds.includes(product.restaurant.id) ? 
                             <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>
-                            : null
+                            : null) : <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>;
                         })
                     }
                 </div>
@@ -36,7 +38,7 @@ const mapState = state => {
       //change to state.products
       products: products,
       //change to state.restaurantIds
-      restaurantIds: restaurantIds
+      restaurantIds: state.restaurantIds
     }
   } 
 

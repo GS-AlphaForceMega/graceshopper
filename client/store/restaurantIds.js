@@ -14,8 +14,8 @@ const defaultRestaurantIds = []
 /**
  * ACTION CREATORS
  */
-const addRestaurantId = (restaurantId) => ({type: ADD_RESTAURANT, restaurantId})
-const removeRestaurantId = (restaurantId) => ({type: REMOVE_RESTAURANT, restaurantId})
+export const addRestaurantId = (restaurantId) => ({type: ADD_RESTAURANT_ID, restaurantId})
+export const removeRestaurantId = (restaurantId) => ({type: REMOVE_RESTAURANT_ID, restaurantId})
 
 
 
@@ -56,10 +56,10 @@ const removeRestaurantId = (restaurantId) => ({type: REMOVE_RESTAURANT, restaura
 export default function (state = defaultRestaurantIds, action) {
   switch (action.type) {
     case ADD_RESTAURANT_ID:
-        return [...state.restaurantIds, action.restaurantId]
+        return [...state, Number(action.restaurantId)]
     case REMOVE_RESTAURANT_ID:
-      return state.restaurantIds.filter(restaurantId => {
-          return restaurantId !== action.restaurantId;
+      return state.filter(restaurantId => {
+          return Number(restaurantId) !== Number(action.restaurantId);
       })
     default:
       return state
