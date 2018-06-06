@@ -4,8 +4,11 @@ import {Link} from 'react-router-dom'
 import ProductPreview from './productPreview';
 
 
-const products = [{id: 1, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****'},{id: 2, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****'},{id: 3, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****'},{id:4, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****'}]
-
+const products = [{id: 1, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****', restaurant:{id: 1}},
+{id: 2, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 110, salePrice: 50, review: '****', restaurant:{id: 2}},
+{id: 3, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 105, salePrice: 50, review: '****', restaurant:{id: 3}},
+{id:4, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 120, salePrice: 50, review: '****', restaurant:{id: 4}}]
+const restaurantIds = [1, 2]
 
 class AllProducts extends Component  {
 
@@ -15,7 +18,9 @@ class AllProducts extends Component  {
                 <div>
                     {
                         this.props.products.map(product => {
-                            return <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>;
+                            return !this.props.restaurantIds.includes(product.restaurant.id) ? 
+                            <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>
+                            : null
                         })
                     }
                 </div>
@@ -28,7 +33,10 @@ class AllProducts extends Component  {
 const mapState = state => {
     return {
       isLoggedIn: !!state.user.id,
-      products: products
+      //change to state.products
+      products: products,
+      //change to state.restaurantIds
+      restaurantIds: restaurantIds
     }
   } 
 
