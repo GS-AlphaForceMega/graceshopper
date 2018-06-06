@@ -13,6 +13,8 @@ const restaurantIds = [1, 2]
 class AllProducts extends Component  {
 
     render(){
+        console.log('restaurantIds in AllProducts', this.props.restaurantIds);
+        const restaurantIds = this.props.restaurantIds;
         return (
             <div>
                 <div>
