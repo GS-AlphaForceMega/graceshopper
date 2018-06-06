@@ -11,14 +11,9 @@ const App = () => {
   return (
     <div>
       <Navbar />
-<<<<<<< HEAD
-      <Sidebar />
-      <Routes />
-=======
       {/* <Routes /> */}
       {/* <Sidebar /> */}
       <AllProducts />
->>>>>>> master
     </div>
   )
 }
