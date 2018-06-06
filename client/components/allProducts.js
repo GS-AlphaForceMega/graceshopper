@@ -20,9 +20,9 @@ class AllProducts extends Component  {
                 <div>
                     {
                         this.props.products.map(product => {
-                            return !this.props.restaurantIds.includes(product.restaurant.id) ? 
+                            return restaurantIds.length >= 1 ? (this.props.restaurantIds.includes(product.restaurant.id) ? 
                             <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>
-                            : null
+                            : null) : <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>;
                         })
                     }
                 </div>
