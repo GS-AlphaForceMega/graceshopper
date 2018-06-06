@@ -9,6 +9,7 @@ import AllProducts from './components/allProducts.js'
 const App = () => {
   return (
     <div>
+      <h1>Helloooooooooooooooooooooooooooooooooooo</h1>
       <Navbar />
       {/* <Routes /> */}
       {/* <Sidebar /> */}
