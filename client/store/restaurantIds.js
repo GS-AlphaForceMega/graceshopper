@@ -14,8 +14,8 @@ const defaultRestaurantIds = []
 /**
  * ACTION CREATORS
  */
-const addRestaurantId = (restaurantId) => ({type: ADD_RESTAURANT, restaurantId})
-const removeRestaurantId = (restaurantId) => ({type: REMOVE_RESTAURANT, restaurantId})
+export const addRestaurantId = (restaurantId) => ({type: ADD_RESTAURANT, restaurantId})
+export const removeRestaurantId = (restaurantId) => ({type: REMOVE_RESTAURANT, restaurantId})
 
 
 

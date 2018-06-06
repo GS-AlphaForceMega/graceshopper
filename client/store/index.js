@@ -18,3 +18,4 @@ export default store
 export * from './user'
 export * from './restaurants'
 export * from './products'
+export * from './restaurantIds'

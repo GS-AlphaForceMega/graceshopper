@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import store, {addRestaurantId, removeRestaurantId} from '../store';
 
+const restaurants = [{id: 1, name: 'ChinaFood'}, {id: 2, name: 'MexicanFood'}];
 
 class Sidebar extends Component  {
     constructor(props){
@@ -10,7 +11,13 @@ class Sidebar extends Component  {
         this.onClickHandler = this.onClickHandler.bind(this);
     }
 
-    onClickHandler (){
+    onClickHandler (event){
+        const restaurantId = event.target.value;
+        if(event.target.checked){
+            store.dispatch(addRestaurantId(restaurantId));
+        } else {
+            store.dispatch(removeRestaurantId(restaurantId));
+        }
         
     }   
 
@@ -46,24 +53,18 @@ class Sidebar extends Component  {
 const mapState = state => {
     return {
       isLoggedIn: !!state.user.id,
-      products: 
+      products: state.products,
+      restaurants: restaurants
     }
   }
   
-  const mapDispatch = dispatch => {
-    return {
-      handleClick() {
-        dispatch(logout())
-      }
-    }
-  }
   
-  export default connect(mapState, mapDispatch)(Navbar)
+  export default connect(mapState)(Sidebar)
   
   /**
    * PROP TYPES
    */
-  Navbar.propTypes = {
-    handleClick: PropTypes.func.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired
-  }
+//   Sidebar.propTypes = {
+//     handleClick: PropTypes.func.isRequired,
+//     isLoggedIn: PropTypes.bool.isRequired
+//   }
