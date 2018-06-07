@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import ProductPreview from './productPreview';
+import Item from './Item.jsx';
 
 
 const products = [{id: 1, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****', restaurant:{id: 1}},
@@ -10,19 +10,19 @@ const products = [{id: 1, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-c
 {id:4, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 120, salePrice: 50, review: '****', restaurant:{id: 2}}]
 const restaurantIds = [1, 2]
 
-class AllProducts extends Component  {
+class Cart extends Component  {
 
     render(){
         console.log('restaurantIds in AllProducts', this.props.restaurantIds);
         const restaurantIds = this.props.restaurantIds;
         return (
             <div>
-                <div className="all-products">
+                <div className="all-items">
                     {
                         this.props.products.map(product => {
                             return restaurantIds.length >= 1 ? (this.props.restaurantIds.includes(product.restaurant.id) ? 
-                            <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>
-                            : null) : <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>;
+                            <Link to={`/products/${product.id}`} key={product.id} ><Item product={product}/></Link>
+                            : null) : <Link to={`/products/${product.id}`} key={product.id} ><Item product={product}/></Link>;
                         })
                     }
                 </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {Navbar} from './components'
 import Routes from './routes'
 import AllProducts from './components/allProducts.js'
@@ -10,8 +11,10 @@ const App = () => {
     <div>
       <Navbar />
       {/* <Routes /> */}
-      <Sidebar />
-      <AllProducts />
+      <div className="middle-section">
+        <Sidebar />
+        <AllProducts />
+      </div>
     </div>
   )
 }

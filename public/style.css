@@ -19,3 +19,40 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#preview-img {
+  width: 10em;
+  height: 10em;
+}
+
+.all-products {
+  display: flex;
+  flex-direction: row;
+  margin: 1em;
+}
+
+.product_Preview {
+  margin: 1em
+}
+
+.all-items {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+}
+
+.site-title {
+  font-family: cursive;
+  font-size: 5em;
+  margin: 0px;
+}
+
+.middle-section {
+  display: flex;
+  flex-direction: row;
+}

@@ -5,7 +5,7 @@ const ProductPreview = (props) =>  {
         return (
             <div className="product_Preview">
                 <div className="product_image">
-                    <img src={product.imageUrl} />
+                    <img id="preview-img" src={product.imageUrl} />
                 </div>
                 <div className="product_details">
                     <div><h2>{product.name}</h2></div>
