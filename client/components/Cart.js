@@ -16,7 +16,7 @@ class Cart extends Component  {
                 <div className="all-items">
                     {
                         this.props.items.map(item => {
-                            <Link to={`/products/${item.id}`} key={item.id} ><Item item={item}/></Link>
+                            return <Link to={`/products/${item.id}`} key={item.id} ><Item item={item}/></Link>
                         })
                     }
                 </div>

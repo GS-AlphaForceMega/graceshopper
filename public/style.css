@@ -20,7 +20,7 @@ form div {
   display: inline-block;
 }
 
-#preview-img {
+.preview-img {
   width: 10em;
   height: 10em;
 }
@@ -49,11 +49,12 @@ form div {
 .site-title {
   font-family: cursive;
   font-size: 5em;
+  text-shadow: 2px 2px black;
   color: gold;
   background-color: forestgreen;
   margin: 0px;
   width: 4.6em;
-  border-radius: 3em;
+  border-radius: 50%;
 }
 
 .middle-section {
