@@ -1,19 +1,13 @@
 const User = require('./user');
 const Order = require('./order');
-const Cart = require('./cart');
-const Restaurant = require('./restaurant');
 const Product = require('./product');
-const PaymentMethod = require('./paymentMethod');
 const Review = require('./review');
+const OrderProduct = require('./orderProduct');
 
-Cart.hasMany(Product, { as: 'items' });
-Cart.belongsTo(User);
 User.hasMany(Order);
-Order.hasOne(Product);
+Order.belongsToMany(Product, { through: 'OrderProduct' });
+Product.belongsToMany(Order, { through: 'OrderProduct' });
 Order.belongsTo(User); //userId should be able to be null
-Product.belongsTo(Restaurant);
-User.hasMany(PaymentMethod);
-PaymentMethod.belongsTo(User);
 Review.belongsTo(Product);
 Review.belongsTo(User);
 Product.hasMany(Review);
@@ -32,6 +26,11 @@ User.hasMany(Review);
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
-// module.exports = {
-//   User
-// }
+
+module.exports = {
+    User,
+    Order,
+    Product,
+    Review,
+    OrderProduct
+}
