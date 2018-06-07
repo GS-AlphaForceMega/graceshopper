@@ -30,7 +30,7 @@ class AllProducts extends Component  {
 
 
                 <div className="all-products">
-                    {   this.props.products.length > 1 ?
+                    {   this.props.products.length >= 1 ?
                         this.props.products.map(product => {
                             return restaurantIds.length >= 1 ? (this.props.restaurantIds.includes(product.restaurant.id) ? 
                             <div key={product.id}>
