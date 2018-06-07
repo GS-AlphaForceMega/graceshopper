@@ -9,8 +9,7 @@ const ProductPreview = (props) =>  {
                 </div>
                 <div className="product_details">
                     <div><h2>{product.name}</h2></div>
-                    <div><h2>{product.originalPrice}</h2></div>
-                    <div><h2>{product.salePrice}</h2></div>
+                    <div><h2>{product.price}</h2></div>
                     <div><h2>{product.review}</h2></div>
                 </div>
             </div>
