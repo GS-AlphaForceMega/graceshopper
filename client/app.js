@@ -28,10 +28,10 @@ const App = () => {
       <Navbar />
       <div className="middle-section">
         <Sidebar />
-//         <Route exact path="/products" component={AllProducts} />
+{/*          <Route exact path="/products" component={AllProducts} /> */}
 
-      <Routes />
-//       <Sidebar />
+      {/* <Routes /> */}
+{/*        <Sidebar /> */}
       <Route exact path="/"component={AllProducts} />
       <Route exact path="/products" component={AllProducts} />
       <Route exact path="/edit/products/:productId" component={EditProduct} />
