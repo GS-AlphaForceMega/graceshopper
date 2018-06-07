@@ -27,12 +27,12 @@ export const updateProduct = (product) => ({type: UPDATE_PRODUCT, product})
 /**
  * THUNK CREATORS
  */
-export const fetchProduct = (productId) =>
-  dispatch =>
-    axios.get(`/api/products/${productId}`)
-      .then(res =>
-        dispatch(setProduct(res.data || defaultProduct)))
-      .catch(err => console.log(err))
+// export const fetchProduct = (productId) =>
+//   dispatch =>
+//     axios.get(`/api/products/${productId}`)
+//       .then(res =>
+//         dispatch(setProduct(res.data || defaultProduct)))
+//       .catch(err => console.log(err))
 
 // export const deleteProduct = (productId) =>
 //   dispatch =>

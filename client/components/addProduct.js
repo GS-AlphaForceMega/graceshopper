@@ -33,11 +33,16 @@ export class AddProduct extends Component  {
     render(){
         return (
             <div>
-                <form onSubmit={this.handSubmit}>
+                <form onSubmit={this.handleSubmit}>
+                    <label>Name</label>
                     <input name="name" value={this.state.name} onChange={this.handleChange} />
+                    <label>ImageURL</label>
                     <input name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange} />
+                    <label>Original Price</label>
                     <input name="originalPrice" value={this.state.originalPrice} onChange={this.handleChange} />
+                    <label>Sale Price</label>
                     <input name="salePrice" value={this.state.salePrice} onChange={this.handleChange} />
+                    <label>Review</label>
                     <input name="review" value={this.state.review} onChange={this.handleChange} />
                     <button type="submit">Add Product</button>
                 </form>
