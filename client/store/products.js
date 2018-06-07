@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 /**
  * ACTION TYPES
  */
@@ -51,8 +52,9 @@ export const deleteProduct = (productId) =>
 export const editProduct = (product) =>
   dispatch =>
     axios.put(`/api/products/${product.id}`)
-      .then(res =>
-        dispatch(updateProduct(res.data)))
+      .then(res => {
+        dispatch(updateProduct(res.data))
+      })
       .catch(err => console.log(err))
 
 export const createProduct = (product) =>
@@ -61,6 +63,7 @@ export const createProduct = (product) =>
       .then(res =>
         dispatch(addProduct(res.data)))
       .catch(err => console.log(err))
+
 
 /**
  * REDUCER
@@ -76,10 +79,10 @@ export default function (state = defaultProducts, action) {
         return product.id !== action.productId;
       })
     case ADD_PRODUCT:
-      return [...state.products, action.product]
+      return [...state, action.product]
     case UPDATE_PRODUCT:
-      return state.products.map(product => {
-        return product.id === action.product.id ? action.product : product;
+      return state.map(product => {
+          return product.id === action.product.id ? action.product : product;
       })
     default:
       return state;
