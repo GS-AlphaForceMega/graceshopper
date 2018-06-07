@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import store, {addRestaurantId, removeRestaurantId, fetchRestaurants} from '../store';
 
-const restaurants = [{id: 1, name: 'ChinaFood'}, {id: 2, name: 'MexicanFood'}];
+const restaurants = [{id: 1, name: 'Chinese Food'}, {id: 2, name: 'Mexican Food'}];
 
 class Sidebar extends Component  {
     constructor(props){
@@ -39,7 +39,7 @@ class Sidebar extends Component  {
                     {
                         restaurants.map(restaurant => {
                             return (
-                                <div>
+                                <div key={restaurant.id}>
                                     <input onClick={this.onClickHandler} id={restaurant.id} type='checkbox' name='restaurant' value={restaurant.id} />
                                     <label for={restaurant.id}>{restaurant.name}</label>
                                 </div>

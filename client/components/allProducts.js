@@ -16,23 +16,36 @@ class AllProducts extends Component  {
         super();
     }
 
+
     componentDidMount() {
         this.props.getProducts()
     }
 
+
+
     render(){
-        console.log('restaurantIds in AllProducts', this.props.restaurantIds);
         const restaurantIds = this.props.restaurantIds;
         return (
             <div>
-                <div>
-                    
-                    {   this.props.products.length >= 1 ?
+
+
+                <div className="all-products">
+                    {   this.props.products.length > 1 ?
                         this.props.products.map(product => {
                             return restaurantIds.length >= 1 ? (this.props.restaurantIds.includes(product.restaurant.id) ? 
-                            <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>
+                            <div key={product.id}>
+                            <Link to={`/products/${product.id}`} ><ProductPreview product={product}/></Link>
+                            <Link to={`edit/products/${product.id}`} ><button>Edit</button></Link>
+                            </div>
                             : <h2>There are no deals which meet the current search criteria</h2>) 
-                            : <Link to={`/products/${product.id}`} key={product.id} ><ProductPreview product={product}/></Link>;
+                            : 
+                            <div key={product.id}>
+                            <Link to={`/products/${product.id}`} ><ProductPreview product={product}/></Link>
+                            <Link to={ {
+                                pathname: `edit/products/${product.id}`,
+                                // state: product
+                            } } ><button>Edit</button></Link>
+                            </div>
                         })
                         : <h2>There are currently no deals for sale</h2>
                     }
@@ -56,4 +69,8 @@ const mapDispatch = dispatch => {
     }
 } 
 
+
 export default connect(mapState, mapDispatch)(AllProducts)
+
+
+

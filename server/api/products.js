@@ -23,9 +23,23 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-    Product.update(req.body, { where: { id: req.params.id } })
-        .then(product => res.json(product))
-        .catch(next);
+    let id = Number(req.params.id);
+	Product.findOne({
+		where: id
+	})
+	.then(foundProduct => {
+		return foundProduct.update(req.body)
+	})
+	.then(newProduct => {
+		res.send(newProduct);
+	})
+	.catch(next);
+    // Product.update(req.body, { where: { id: req.params.id } })
+    //     .then(product => {
+    //         console.log(product)
+    //         res.json(product)
+    //     })
+    //     .catch(next);
 });
 
 router.delete('/:id', (req, res, next) => {
