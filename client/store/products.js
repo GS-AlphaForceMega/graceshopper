@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 /**
  * ACTION TYPES
  */
@@ -16,10 +17,10 @@ const defaultProducts = []
 /**
  * ACTION CREATORS
  */
-const getAllProducts = products => ({type: GET_ALL_PRODUCTS, products})
-const removeProduct = (productId) => ({type: REMOVE_PRODUCT, productId})
-const addProduct = (product) => ({type: ADD_PRODUCT, product})
-const updateProduct = (product) => ({type: UPDATE_PRODUCT, product})
+export const getAllProducts = products => ({type: GET_ALL_PRODUCTS, products})
+export const removeProduct = (productId) => ({type: REMOVE_PRODUCT, productId})
+export const addProduct = (product) => ({type: ADD_PRODUCT, product})
+export const updateProduct = (product) => ({type: UPDATE_PRODUCT, product})
 
 
 /**
@@ -42,8 +43,9 @@ export const deleteProduct = (productId) =>
 export const editProduct = (product) =>
     dispatch =>
     axios.put(`/api/products/${product.id}`)
-      .then(res =>
-        dispatch(updateProduct(res.data)))
+      .then(res => {
+        dispatch(updateProduct(res.data))
+      })
       .catch(err => console.log(err))
 
 export const createProduct = (product) =>
@@ -53,6 +55,7 @@ export const createProduct = (product) =>
         dispatch(addProduct(res.data)))
       .catch(err => console.log(err))
 
+
 /**
  * REDUCER
  */
@@ -61,13 +64,13 @@ export default function (state = defaultProducts, action) {
     case GET_ALL_PRODUCTS:
       return action.products
     case REMOVE_PRODUCT:
-      return state.products.filter(product => {
+      return state.errfilter(product => {
           return product.id !== action.productId;
       })
     case ADD_PRODUCT:
-      return [...state.products, action.product]
+      return [...state, action.product]
     case UPDATE_PRODUCT:
-      return state.products.map(product => {
+      return state.map(product => {
           return product.id === action.product.id ? action.product : product;
       })
     default:
