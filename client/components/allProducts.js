@@ -24,7 +24,7 @@ class AllProducts extends Component  {
         const restaurantIds = this.props.restaurantIds;
         return (
             <div>
-                <div>
+                <div className="all-products">
                     {
                         this.props.products.map(product => {
                             return restaurantIds.length >= 1 ? (this.props.restaurantIds.includes(product.restaurant.id) ? 
