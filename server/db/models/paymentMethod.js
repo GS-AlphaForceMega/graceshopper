@@ -1,6 +1,7 @@
 const db = require('../db');
 const Sequelize = require('sequelize');
 
+//NO - Don't store payment in plain text. 
 const PaymentMethod = db.define('paymentMethod', {
     cardNumber: {
         type: Sequelize.INTEGER,

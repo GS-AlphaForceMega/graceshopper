@@ -19,6 +19,33 @@ Review.belongsTo(User);
 Product.hasMany(Review);
 User.hasMany(Review);
 
+
+/*
+
+How are orders associated with users? WHAT IF an order was instead associated with a session. 
+Orders and products... Order hasMany Products --> put a product id on the order.
+A dynamic through table. = order_products
+orderId
+productId
+quantity
+price: null, setThisPrice on purchase.
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:

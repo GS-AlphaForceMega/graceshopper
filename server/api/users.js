@@ -14,8 +14,10 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
+//CG: probably don't want this. 
 router.post('/', (req, res, next) => {
   User.create(req.body)
+  //VERY clearly copied from product model.
     .then(product => res.send(product))
     .catch(next);
 });
