@@ -49,7 +49,11 @@ form div {
 .site-title {
   font-family: cursive;
   font-size: 5em;
+  color: gold;
+  background-color: forestgreen;
   margin: 0px;
+  width: 4.6em;
+  border-radius: 3em;
 }
 
 .middle-section {
