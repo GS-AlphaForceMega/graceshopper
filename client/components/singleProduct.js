@@ -1,32 +1,39 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import { fetchProduct } from '../store/currentProduct';
 // import {Link} from 'react-router-dom'
 
 
 class SingleProduct extends Component  {
+    constructor() {
+        super()
+    }
 
+    componentDidMount() {
+        this.props.getProduct(Number(this.props.match.params.productId))
+    }
 
     render(){
         const productId = this.props.match.params.productId;
-        const product = this.props.products.filter(prod => {
-            return Number(prod.id) === Number(productId)
-        });
+        // const product = this.props.products.filter(prod => {
+        //     return Number(prod.id) === Number(productId)
+        // });
 
         return (
             <div>
                 <div>
-                    {
-                        product ? (
+                    {   this.props.product ?
                                 <div>
-                                    <div><img src={product.imageUrl} /></div>
+                                    {console.log('single producttttttttttt',this.props)}
+                                    <div><img src={this.props.product.imageUrl} /></div>
                                     <div>
-                                        <div>{product.name}</div>
-                                        <div>{product.description}</div>
-                                        <div>{product.price}</div>
-                                        <div>{product.review}</div>
+                                        <div>{this.props.product.name}</div>
+                                        <div>{this.props.product.description}</div>
+                                        <div>{this.props.product.price}</div>
+                                        <div>{this.props.product.review}</div>
                                     </div>
                                 </div>
-                            ) : null
+                                : null
                     }
                 </div>
             </div>
@@ -38,8 +45,13 @@ class SingleProduct extends Component  {
 const mapState = state => {
     return {
       isLoggedIn: !!state.user.id,
-      products: state.products,
+      product: state.currentProduct,
     }
   } 
+const mapDispatch = dispatch => {
+    return {
+        getProduct: (productId) => dispatch(fetchProduct(productId))
+    }
+}
 
-export default connect(mapState)(SingleProduct)
+export default connect(mapState, mapDispatch)(SingleProduct)
