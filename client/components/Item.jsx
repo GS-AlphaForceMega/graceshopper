@@ -5,11 +5,13 @@ const Item = (props) =>  {
         return (
             <div className="item">
                 <div className="item_image">
-                    <img id="preview-img" src={item.imageUrl} />
+                    <img className="preview-img" src={item.imageUrl} />
                 </div>
                 <div className="item_details">
                     <div><h2>{item.name}</h2></div>
-                    <div><h2>{item.salePrice}</h2></div>
+                    <div><h2>Original: ${item.originalPrice}</h2></div>
+                    <div><h2>You Pay: ${item.salePrice}</h2></div>
+                    <div><h2>{item.review}</h2></div>
                 </div>
             </div>
         )

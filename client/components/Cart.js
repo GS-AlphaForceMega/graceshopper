@@ -16,10 +16,13 @@ class Cart extends Component  {
                 <div className="all-items">
                     {
                         this.props.items.map(item => {
-                            <Link to={`/products/${item.id}`} key={item.id} ><Item item={item}/></Link>
+                            return <Link to={`/products/${item.id}`} key={item.id} ><Item item={item}/></Link>
                         })
                     }
                 </div>
+                <h1>Cart Total: ${this.props.items.reduce((sum, item) => {
+                    return sum + Number(item.salePrice)
+                }, 0)}</h1>
             </div>
         )
     }
