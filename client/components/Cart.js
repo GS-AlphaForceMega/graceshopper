@@ -20,6 +20,9 @@ class Cart extends Component  {
                         })
                     }
                 </div>
+                <h1>Cart Total: ${this.props.items.reduce((sum, item) => {
+                    return sum + Number(item.salePrice)
+                }, 0)}</h1>
             </div>
         )
     }
