@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import { editProduct } from '../store/products';
-import { fetchProduct, updateProduct } from '../store/currentProduct';
+// import { editProduct } from '../store/products';
+import { fetchProduct, editCurrentProduct } from '../store/currentProduct';
 import axios from 'axios';
+import store from './../store'
 
 //should this push to new history of updated product????
 //would probably be better to have a change handler that updates the store state
@@ -12,13 +13,16 @@ import axios from 'axios';
 export class EditProduct extends Component  {
     constructor(props) {
         super(props);
-        this.state = {};
-
+        this.state = store.getState().currentProduct;
+        //this.state = store.getState().product
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
+        this.unsubscribe = store.subscribe(() => {
+            this.setState(store.getState().currentProduct)
+        })
         let productId = Number(this.props.match.params.productId)
         axios.get(`/api/products/${productId}`)
         .then(res => res.data)
@@ -32,6 +36,10 @@ export class EditProduct extends Component  {
         //     this.setState(this.props.product)
         // })
         
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe()
     }
 
     handleChange(event) {
@@ -83,7 +91,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
         getProduct: (productId) => dispatch(fetchProduct(productId)),
-        submitEdit: (editedProduct) => dispatch(editProduct(editedProduct))
+        submitEdit: (editedProduct) => dispatch(editCurrentProduct(editedProduct))
     }
 }
 

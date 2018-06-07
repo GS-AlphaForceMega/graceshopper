@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 /**
  * ACTION TYPES
  */
@@ -42,8 +43,9 @@ export const deleteProduct = (productId) =>
 export const editProduct = (product) =>
     dispatch =>
     axios.put(`/api/products/${product.id}`)
-      .then(res =>
-        dispatch(updateProduct(res.data)))
+      .then(res => {
+        dispatch(updateProduct(res.data))
+      })
       .catch(err => console.log(err))
 
 export const createProduct = (product) =>

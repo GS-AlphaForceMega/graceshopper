@@ -37,7 +37,7 @@ class AllProducts extends Component  {
                             <Link to={`/products/${product.id}`} ><ProductPreview product={product}/></Link>
                             <Link to={ {
                                 pathname: `edit/products/${product.id}`,
-                                state: product
+                                // state: product
                             } } ><button>Edit</button></Link>
                             </div>
                         })

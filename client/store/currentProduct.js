@@ -4,24 +4,24 @@ import axios from 'axios'
  * ACTION TYPES
  */
 // const GET_PRODUCT = 'GET_PRODUCT'
-const SET_PRODUCT = 'SET_PRODUCT'
+const SET_CURRENT_PRODUCT = 'SET_CURRENT_PRODUCT'
 // const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 // const ADD_PRODUCT = 'ADD_PRODUCT'
-const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+const UPDATE_CURRENT_PRODUCT = 'UPDATE_CURRENT_PRODUCT'
 
 /**
  * INITIAL STATE
  */
 const defaultProduct = {}
-
+ 
 /**
  * ACTION CREATORS
  */
 // export const getProduct = productId => ({type: GET_PRODUCT, productId})
-export const setProduct = product => ({type: SET_PRODUCT, product})
+export const setCurrentProduct = product => ({type: SET_CURRENT_PRODUCT, product})
 // export const removeProduct = (productId) => ({type: REMOVE_PRODUCT, productId})
 // export const addProduct = (product) => ({type: ADD_PRODUCT, product})
-export const updateProduct = (product) => ({type: UPDATE_PRODUCT, product})
+export const updateCurrentProduct = product => ({type: UPDATE_CURRENT_PRODUCT, product})
 
 
 /**
@@ -41,12 +41,21 @@ export const updateProduct = (product) => ({type: UPDATE_PRODUCT, product})
 //         dispatch(removeProduct(res.data.id)))
 //       .catch(err => console.log(err))
 
-// export const editProduct = (product) =>
-//     dispatch =>
-//     axios.put(`/api/products/${product.id}`)
-//       .then(res =>
-//         dispatch(updateProduct(res.data)))
-//       .catch(err => console.log(err))
+// export const editCurrentProduct = (product) => {
+//   return function() {
+//     return axios.put('/api/products/1', product)
+//     .then(res => {
+//       console.log('put res',res)
+//     })
+//     .catch(console.error)
+//   }
+// }
+export const editCurrentProduct = (product) =>
+    dispatch => 
+    axios.put(`/api/products/${product.id}`, product)
+      .then(res =>{
+        dispatch(updateCurrentProduct(res.data))})
+      .catch(err => console.log(err))
 
 // export const createProduct = (product) =>
 //     dispatch =>
@@ -60,8 +69,9 @@ export const updateProduct = (product) => ({type: UPDATE_PRODUCT, product})
  * REDUCER
  */
 export default function (state = defaultProduct, action) {
+  console.log('currentproduct reducer', action)
   switch (action.type) {
-    case SET_PRODUCT:
+    case SET_CURRENT_PRODUCT:
       return action.product
     // case REMOVE_PRODUCT:
     //   return state.errfilter(product => {
@@ -69,7 +79,7 @@ export default function (state = defaultProduct, action) {
     //   })
     // case ADD_PRODUCT:
     //   return [...state, action.product]
-    case UPDATE_PRODUCT:
+    case UPDATE_CURRENT_PRODUCT:
         // return {...state, ...action.product}}
       return Object.assign({}, state, {...action.product})
     default:
