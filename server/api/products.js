@@ -1,14 +1,29 @@
 const router = require('express').Router();
 const Product = require('../db/models/product');
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 module.exports = router;
 
 router.get('/', (req, res, next) => {
     Product.findAll({
         include: [{all: true}]
+        //include: [Restaurant]
     })
         .then(products => res.json(products))
         .catch(next);
 });
+//this is for querying by name in search bar stick right into findAll above
+// router.get('/findmyorderplease', (req, res, next) => {
+//     Product.findAll({
+//         where: {
+//             name: {
+//                 [Op.iLike]: '%but%'
+//             }
+//         }
+//     })
+//     .then(products => res.json(products))
+//     .catch(next)
+// })
 
 router.get('/:id', (req, res, next) => {
     Product.findById(req.params.id)
