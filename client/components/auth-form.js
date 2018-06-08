@@ -11,6 +11,7 @@ const AuthForm = (props) => {
 
   return (
     <div className="auth-div">
+    {console.log('props',props)}
       <form className="auth-form" onSubmit={handleSubmit} name={name}>
         <h3>Please enter your user information:</h3>
         { name === 'signup' ? (<div>
@@ -62,10 +63,11 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit (evt) {
       evt.preventDefault()
-      const formName = evt.target.name
+      // console.log('submit event',evt.target)
+      // const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      dispatch(auth(email, password, 'login'))
     }
   }
 }
