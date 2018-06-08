@@ -29,6 +29,7 @@ form div {
   display: flex;
   flex-direction: row;
   margin: 1em;
+  flex-wrap: wrap;
 }
 
 .product_Preview {
@@ -47,17 +48,26 @@ form div {
 }
 
 .site-title {
-  font-family: cursive;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 5em;
   text-shadow: 2px 2px black;
-  color: gold;
-  background-color: forestgreen;
+  color: red;
+  background-color: gold;
   margin: 0px;
   width: 4.6em;
-  border-radius: 50%;
+  border-radius: 75% 25%;
 }
 
 .middle-section {
   display: flex;
   flex-direction: row;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-div {
+  margin-left: 5em;
 }
