@@ -6,8 +6,7 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
     Product.findAll({
-        include: [{all: true}]
-        //include: [Restaurant]
+        include: ['restaurant', 'reviews']
     })
         .then(products => res.json(products))
         .catch(next);
