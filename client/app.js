@@ -8,6 +8,7 @@ import Cart from './components/Cart.js'
 import {Route, Redirect} from 'react-router-dom'
 import EditProduct from './components/editProduct'
 import AddProduct from './components/addProduct'
+import { Login, Signup } from './components/auth-form'
 import SingleProduct from './components/singleProduct'
 
 // const App = () => {
@@ -39,6 +40,8 @@ const App = () => {
       <Route exact path="/add/product" component={AddProduct} />
       <Route exact path="/products/:productId" component={SingleProduct} />
       <Route exact path="/cart" component={Cart} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
       {/* <Route component={AllProducts} /> */}
       </div>
     </div>
