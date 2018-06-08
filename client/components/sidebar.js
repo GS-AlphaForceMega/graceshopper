@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import store, {addRestaurantId, removeRestaurantId, fetchRestaurants} from '../store';
+import {changeSearch} from '../store'
 
 const restaurants = [{id: 1, name: 'Chinese Food'}, {id: 2, name: 'Mexican Food'}];
 
@@ -9,6 +10,7 @@ class Sidebar extends Component  {
         super(props);
 
         this.onClickHandler = this.onClickHandler.bind(this);
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount(){
@@ -22,8 +24,11 @@ class Sidebar extends Component  {
         } else {
             store.dispatch(removeRestaurantId(restaurantId));
         }
-        
     }   
+
+    handleChange(event) {
+        this.props.changeSearch(event.target.value);
+    }
 
     render(){
         const products = this.props.products;
@@ -32,7 +37,8 @@ class Sidebar extends Component  {
             <div>
                 <div>
                    <h2>Search</h2>
-                   <input name='searchInput' value="Restarant name..." />
+                   <input name='searchInput' placeholder="Restarant name..." 
+                   value={this.props.searchBar} onChange={this.handleChange}/>
                 </div>
                 <div>
                     <h2>Search</h2>
@@ -58,17 +64,19 @@ const mapState = state => {
     return {
       isLoggedIn: !!state.user.id,
       products: state.products,
-      restaurants: state.restaurants
+      restaurants: state.restaurants,
+      searchBar: state.searchBar
     }
   }
 const mapDispatch = dispatch => {
     return {
-        getRestaurants: () => dispatch(fetchRestaurants())
+        getRestaurants: () => dispatch(fetchRestaurants()),
+        changeSearch: (search) => dispatch(changeSearch(search))
     }
 }
   
   
-  export default connect(mapState, mapDispatch)(Sidebar)
+export default connect(mapState, mapDispatch)(Sidebar)
   
   /**
    * PROP TYPES

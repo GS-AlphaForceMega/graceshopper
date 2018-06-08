@@ -16,38 +16,49 @@ class AllProducts extends Component  {
         super();
     }
 
-
     componentDidMount() {
         this.props.getProducts()
     }
 
-
-
     render(){
         const restaurantIds = this.props.restaurantIds;
+        const searchBar = this.props.searchBar;
+        //starting with all the products means you can filter it as needed
+        let filteredProducts = this.props.products;
+        //if there are restaurantIds you want to filter the products, if not then you should not filter the products
+        if (restaurantIds.length >= 1) {
+            filteredProducts = filteredProducts.filter(product => {
+                return restaurantIds.includes(product.restaurant.id)
+            })
+        }
+        //if there is a search you want to filter the products, if not then dont
+        if (searchBar.length >= 1) {
+            filteredProducts = filteredProducts.filter(product => {
+                return product.name.includes(searchBar)
+            })
+        }        
         return (
             <div>
-
-
                 <div className="all-products">
-                    {   this.props.products.length >= 1 ?
-                        this.props.products.map(product => {
-                            return restaurantIds.length >= 1 ? (this.props.restaurantIds.includes(product.restaurant.id) ? 
-                            <div key={product.id}>
-                            <Link to={`/products/${product.id}`} ><ProductPreview product={product}/></Link>
-                            <Link to={`edit/products/${product.id}`} ><button>Edit</button></Link>
-                            </div>
-                            : <h2>There are no deals which meet the current search criteria</h2>) 
-                            : 
-                            <div key={product.id}>
-                            <Link to={`/products/${product.id}`} ><ProductPreview product={product}/></Link>
-                            <Link to={ {
-                                pathname: `edit/products/${product.id}`,
-                                // state: product
-                            } } ><button>Edit</button></Link>
-                            </div>
+                    {   
+                        //check if there are any products if none go to last : for a message otherwise you will display products
+                        this.props.products.length >= 1 ?
+                        //if there are products, are there any left after filtering? if no you display a message
+                        //otherwise you map all the products that have not been filtered
+                        filteredProducts.length >= 1 ?
+                        // if yes then map those products
+                        filteredProducts.map(product => {
+                            return (<div key={product.id}>
+                                <Link to={`/products/${product.id}`} ><ProductPreview product={product}/></Link>
+                                <Link to={`edit/products/${product.id}`} ><button>Edit</button></Link>
+                            </div>)
                         })
-                        : <h2>There are currently no deals for sale</h2>
+                        //if no filtered products then the search is too strict display message
+                        :
+                        <h2>There are no deals which meet the current search criteria</h2>
+                        :
+                        //if there are no products then display this message
+                        <h2>There are currently no deals for sale</h2>
                     }
                 </div>
             </div>
@@ -60,7 +71,8 @@ const mapState = state => {
     return {
       isLoggedIn: !!state.user.id,
       products: state.products,
-      restaurantIds: state.restaurantIds
+      restaurantIds: state.restaurantIds,
+      searchBar: state.searchBar
     }
   }
 const mapDispatch = dispatch => {
