@@ -30,6 +30,7 @@
     "express-session": "^1.15.1",
     "global": "^4.3.2",
     "history": "^4.6.3",
+    "hubot-seinfeld": "^1.0.2",
     "morgan": "^1.8.1",
     "n": "^2.1.11",
     "passport": "^0.3.2",
