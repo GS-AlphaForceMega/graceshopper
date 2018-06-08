@@ -32,33 +32,39 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    Product.create(req.body)
-        .then(product => res.send(product))
-        .catch(next);
+    if (req.user.isAdmin === true) {
+        Product.create(req.body)
+            .then(product => res.send(product))
+            .catch(next);
+    } else throw new Error('You must be logged in as an admin to add products.');
 });
 
 router.put('/:id', (req, res, next) => {
-    let id = Number(req.params.id);
-	Product.findOne({
-		where: id
-	})
-	.then(foundProduct => {
-		return foundProduct.update(req.body)
-	})
-	.then(newProduct => {
-		res.send(newProduct);
-	})
-	.catch(next);
-    // Product.update(req.body, { where: { id: req.params.id } })
-    //     .then(product => {
-    //         console.log(product)
-    //         res.json(product)
-    //     })
-    //     .catch(next);
+    if (req.user.isAdmin === true) {
+        let id = Number(req.params.id);
+        Product.findOne({
+            where: id
+        })
+        .then(foundProduct => {
+            return foundProduct.update(req.body)
+        })
+        .then(newProduct => {
+            res.send(newProduct);
+        })
+        .catch(next);
+        // Product.update(req.body, { where: { id: req.params.id } })
+        //     .then(product => {
+        //         console.log(product)
+        //         res.json(product)
+        //     })
+        //     .catch(next);
+    } else throw new Error('You must be logged in as an admin to edit products.');
 });
 
 router.delete('/:id', (req, res, next) => {
-    Product.destroy({ where: { id: req.params.id } })
-        .then(product => res.send(product))
-        .catch(next);
+    if (req.user.isAdmin === true) {
+        Product.destroy({ where: { id: req.params.id } })
+            .then(product => res.send(product))
+            .catch(next);
+    } else throw new Error('You must be logged in as an admin to delete products.');
 });
