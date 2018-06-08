@@ -23,22 +23,27 @@ class SingleProduct extends Component  {
             <div>
                 <div>
                     {   this.props.product ?
-                                <div>
-                                    {console.log('single producttttttttttt',this.props)}
-                                    <div><img src={this.props.product.imageUrl} /></div>
-                                    <div>
-                                        <div>{this.props.product.name}</div>
-                                        <div>{this.props.product.description}</div>
-                                        <div>{this.props.product.price}</div>
-                                        <div>{this.props.product.review}</div>
-                                    </div>
-                                </div>
-                                : null
+                        <div>
+                            {console.log('single producttttttttttt',this.props)}
+                            <div><img src={this.props.product.imageUrl} /></div>
+                            <div>
+                                <div>{this.props.product.name}</div>
+                                <div>{this.props.product.description}</div>
+                                <div>{this.props.product.price}</div>
+                                <div>{this.props.product.review}</div>
+                            </div>
+                        </div>
+                        : null
                     }
                 </div>
+                <button onClick={handleClick}>Add To Cart</button>
             </div>
         )
     }
+    
+}
+
+function handleClick(evt) {
     
 }
 
