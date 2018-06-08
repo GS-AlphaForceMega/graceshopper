@@ -23,18 +23,26 @@ class AllProducts extends Component  {
     render(){
         const restaurantIds = this.props.restaurantIds;
         const searchBar = this.props.searchBar;
+        const cuisines = this.props.cuisines;
         //starting with all the products means you can filter it as needed
         let filteredProducts = this.props.products;
         //if there are restaurantIds you want to filter the products, if not then you should not filter the products
         if (restaurantIds.length >= 1) {
             filteredProducts = filteredProducts.filter(product => {
-                return restaurantIds.includes(product.restaurant.id)
+                return product.restaurant === null ? false :
+                restaurantIds.includes(product.restaurant.id)
             })
         }
         //if there is a search you want to filter the products, if not then dont
         if (searchBar.length >= 1) {
             filteredProducts = filteredProducts.filter(product => {
                 return product.name.includes(searchBar)
+            })
+        }
+        if (cuisines.length >= 1) {
+            filteredProducts = filteredProducts.filter(product => {
+                return product.cuisine === null ? false :
+                cuisines.includes(product.cuisine)
             })
         }        
         return (
@@ -72,7 +80,8 @@ const mapState = state => {
       isLoggedIn: !!state.user.id,
       products: state.products,
       restaurantIds: state.restaurantIds,
-      searchBar: state.searchBar
+      searchBar: state.searchBar,
+      cuisines: state.cuisines
     }
   }
 const mapDispatch = dispatch => {
