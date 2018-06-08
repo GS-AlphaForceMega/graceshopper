@@ -1,8 +1,10 @@
 const router = require('express').Router()
 const { User } = require('../db/models')
-module.exports = router
+const chalk = require('chalk')
+;module.exports = router
 
 router.get('/', (req, res, next) => {
+  console.log(chalk.magenta(req.session));
   User.findAll()
     .then(users => res.json(users))
     .catch(next);
@@ -49,7 +51,11 @@ router.put('/:id', (req, res, next) => {
 });
 
 router.delete('/:id', (req, res, next) => {
-  User.destroy({ where: { id: req.params.id } })
+  User.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
     .then(user => res.send(user))
     .catch(next);
 });
