@@ -5,8 +5,8 @@ const Review = require('./review');
 const OrderProduct = require('./orderProduct');
 
 User.hasMany(Order);
-Order.belongsToMany(Product, { through: 'OrderProduct' });
-Product.belongsToMany(Order, { through: 'OrderProduct' });
+Order.belongsToMany(Product, { through: OrderProduct });
+Product.belongsToMany(Order, { through: OrderProduct });
 Order.belongsTo(User); //userId should be able to be null
 Review.belongsTo(Product);
 Review.belongsTo(User);

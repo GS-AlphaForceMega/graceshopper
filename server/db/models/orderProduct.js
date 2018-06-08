@@ -15,3 +15,5 @@ const OrderProduct = db.define('orderProduct', {
         defaultValue: null
     }
 });
+
+module.exports = OrderProduct;
