@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Item from './Item.jsx';
+import Checkout from './Checkout';
 
 const items = [{id: 1, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****', restaurant:{id: 1}},
 {id: 2, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 110, salePrice: 50, review: '****', restaurant:{id: 1}},
@@ -23,10 +24,18 @@ class Cart extends Component  {
                 <h1>Cart Total: ${this.props.items.reduce((sum, item) => {
                     return sum + Number(item.salePrice)
                 }, 0)}</h1>
+
+
+<Checkout
+  name={'The best deals in your city'}
+  description={'Enter valid email for getttin tickets'}
+  amount={1}
+/>
+
             </div>
         )
     }
-    
+
 }
 
 const mapState = state => {
@@ -35,6 +44,6 @@ const mapState = state => {
       //change to state.items
       items: items
     }
-  } 
+  }
 
   export default connect(mapState)(Cart)
