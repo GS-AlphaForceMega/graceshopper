@@ -2,7 +2,7 @@ const db = require('../server/db');
 const {Restaurant, Product} = require('../server/db/models');
 
 const names = [
-    '2x1 Romantic Dinner', '20%Off dinner special', '10%Off between 4pm-6pm', 'HappyHour - 25%Off', 'BuyOne - GetOne 50%Off', '20% for partys of 10 or more', '2 entrees for 1 - Enjoy!', 'Dessert on Us for every 2 entrees && +$50 purchase'
+    '2x1 Romantic Dinner', '20%Off dinner special', '10%Off between 4pm-6pm', 'HappyHour - 25%Off', 'BuyOne - GetOne 50%Off', '20% for partys of 10 or more', '2 entrees for 1 - Enjoy!', 'Dessert on Us +$50 purchase'
 ];
 
 const images = [
