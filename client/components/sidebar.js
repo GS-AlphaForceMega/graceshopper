@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import store, {addRestaurantId, removeRestaurantId} from '../store';
+import store, {addRestaurantId, removeRestaurantId, fetchRestaurants} from '../store';
 
 const restaurants = [{id: 1, name: 'Chinese Food'}, {id: 2, name: 'Mexican Food'}];
 
@@ -9,6 +9,10 @@ class Sidebar extends Component  {
         super(props);
 
         this.onClickHandler = this.onClickHandler.bind(this);
+    }
+
+    componentDidMount(){
+        this.props.getRestaurants()
     }
 
     onClickHandler (event){
@@ -54,12 +58,17 @@ const mapState = state => {
     return {
       isLoggedIn: !!state.user.id,
       products: state.products,
-      restaurants: restaurants
+      restaurants: state.restaurants
     }
   }
+const mapDispatch = dispatch => {
+    return {
+        getRestaurants: () => dispatch(fetchRestaurants())
+    }
+}
   
   
-  export default connect(mapState)(Sidebar)
+  export default connect(mapState, mapDispatch)(Sidebar)
   
   /**
    * PROP TYPES

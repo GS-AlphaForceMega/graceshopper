@@ -8,6 +8,7 @@ import Cart from './components/Cart.js'
 import {Route, Redirect} from 'react-router-dom'
 import EditProduct from './components/editProduct'
 import AddProduct from './components/addProduct'
+import SingleProduct from './components/singleProduct'
 
 // const App = () => {
 //   return (
@@ -36,7 +37,8 @@ const App = () => {
       <Route exact path="/products" component={AllProducts} />
       <Route exact path="/edit/products/:productId" component={EditProduct} />
       <Route exact path="/add/product" component={AddProduct} />
-            <Route exact path="/cart" component={Cart} />
+      <Route exact path="/products/:productId" component={SingleProduct} />
+      <Route exact path="/cart" component={Cart} />
       {/* <Route component={AllProducts} /> */}
       </div>
     </div>
