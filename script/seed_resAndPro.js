@@ -6,7 +6,7 @@ const names = [
 ];
 
 const images = [
-    'http://wfiles.brothersoft.com/c/chimpanzee-003_196080-1152x864.jpg', 'http://3.bp.blogspot.com/_Ki2IPI9h77Y/TAeof-NSc0I/AAAAAAAAAs0/MSMjY3qgJ9A/s1600/bonobobaby.jpg'
+    'https://irp-cdn.multiscreensite.com/91ec95fb/dms3rep/multi/tablet/pizza_specials_davis_ca-692x692.png', 'http://www.eatdrinksetx.com/wp-content/uploads/2011/10/eat-drink-daily-specials.jpg.png', 'http://stangentdemo.com/hollywood/wp-content/uploads/2012/11/Specials.jpg', 'http://hockomockswampsupperclub.com/wp-content/uploads/2015/10/wedspecial.png'
 ];
 
 const prices = [
@@ -56,6 +56,9 @@ const restaurants = [
     }
 ];
 
+const cuisines = [
+    'chinesse', 'mexican', 'italian', 'venezuelan'
+];
 
 const restaurantId = () => Math.round(Math.random() * (restaurants.length - 1)) + 1;
 const name = () => names[Math.round(Math.random() * (names.length - 1))];
@@ -63,6 +66,7 @@ const imageUrl = () => images[Math.round(Math.random() * (images.length - 1))];
 const price = () => prices[Math.round(Math.random() * (prices.length - 1))];
 const quantity = () => quantities[Math.round(Math.random() * (quantities.length - 1))];
 const description = () => descriptions[Math.round(Math.random() * (descriptions.length - 1))];
+const cuisine = () => cuisines[Math.round(Math.random() * (cuisines.length - 1))];
 
 const products = [{
     name: name(),
@@ -70,7 +74,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -79,7 +83,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -88,7 +92,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -97,7 +101,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -106,7 +110,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -115,7 +119,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -124,7 +128,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -133,7 +137,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -142,7 +146,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -151,7 +155,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -160,7 +164,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -169,7 +173,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -178,7 +182,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -187,7 +191,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -196,7 +200,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -205,7 +209,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -214,7 +218,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -223,7 +227,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -232,7 +236,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -241,7 +245,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -250,7 +254,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -259,7 +263,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -268,7 +272,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -277,7 +281,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -286,7 +290,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -295,7 +299,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -304,7 +308,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -313,7 +317,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -322,7 +326,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -331,7 +335,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -340,7 +344,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -349,7 +353,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -358,7 +362,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 },
 {
@@ -367,7 +371,7 @@ const products = [{
     restaurantId: restaurantId(),
     price: price(),
     quantity: quantity(),
-    cuisine: restaurants[this.restaurantId].cuisine,
+    cuisine: cuisine(),
     description: description()
 }];
 
