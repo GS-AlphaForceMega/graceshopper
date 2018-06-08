@@ -14,10 +14,6 @@ const Product = db.define('product', {
         type: Sequelize.DECIMAL(10 ,2),
         allowNull: false
     },
-    availability: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true
-    },
     cuisine: {
         type: Sequelize.STRING,
         allowNull: false
@@ -29,10 +25,6 @@ const Product = db.define('product', {
             notEmpty: true
         }
     },
-    // limitedQuantity: {
-    //     type: Sequelize.BOOLEAN,
-    //     defaultValue: false
-    // },
     quantity: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
@@ -40,6 +32,14 @@ const Product = db.define('product', {
             min: 0
         }
     },
+    // availability: {
+    //     type: Sequelize.BOOLEAN,
+    //     defaultValue: true
+    // },
+    // limitedQuantity: {
+    //     type: Sequelize.BOOLEAN,
+    //     defaultValue: false
+    // },
     // limitedTime: {
     //     type: Sequelize.BOOLEAN,
     //     defaultValue: false
