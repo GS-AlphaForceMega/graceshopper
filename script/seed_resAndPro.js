@@ -56,11 +56,11 @@ const restaurants = [
     }
 ];
 
-const cuisines = [
-    'chinesse', 'mexican', 'italian', 'venezuelan'
-];
+// const cuisines = [
+//     'chinesse', 'mexican', 'italian', 'venezuelan'
+// ];
 
-const restaurantId = () => Math.round(Math.random() * (restaurants.length - 1)) + 1;
+const restaurantId = () => Math.round(Math.random() * (restaurants.length - 1));
 const name = () => names[Math.round(Math.random() * (names.length - 1))];
 const imageUrl = () => images[Math.round(Math.random() * (images.length - 1))];
 const price = () => prices[Math.round(Math.random() * (prices.length - 1))];
@@ -71,13 +71,15 @@ const cuisine = () => cuisines[Math.round(Math.random() * (cuisines.length - 1))
 const createProduct = (num) => {
     let products = [];
     for (let i=0; i<num ; i++){
+        const resId = restaurantId();
+        const cuisin = restaurants[resId].cuisine;
         products.push({
             name: name(),
-            imageUrl: imageUrl()    ,
-            restaurantId: restaurantId(),
+            imageUrl: imageUrl(),
+            restaurantId: resId + 1,
             price: price(),
             quantity: quantity(),
-            cuisine: cuisine(),
+            cuisine: cuisin,
             description: description()
         });
     }
