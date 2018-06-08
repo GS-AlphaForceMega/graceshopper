@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const { User } = require('../db/models')
-const chalk = require('chalk')
-;module.exports = router
+const chalk = require('chalk');
+module.exports = router
+
 
 router.get('/', (req, res, next) => {
   console.log(chalk.magenta(req.session));
