@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  if (req.user.isAdmin === true || req.user.id === req.params.id) {
+  if (req.user.isAdmin === true || req.user.id === Number(req.params.id)) {
     User.findById(req.params.id)
       .then(user => res.json(user))
       .catch(next);
