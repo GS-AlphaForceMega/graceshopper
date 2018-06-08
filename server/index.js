@@ -11,6 +11,9 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+
+
+
 module.exports = app
 
 /**
@@ -37,6 +40,7 @@ const createApp = () => {
   // body parsing middleware
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
+
 
   // compression middleware
   app.use(compression())
@@ -81,6 +85,7 @@ const createApp = () => {
     res.status(err.status || 500).send(err.message || 'Internal server error.')
   })
 }
+
 
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)
