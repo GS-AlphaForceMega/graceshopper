@@ -61,3 +61,12 @@ form div {
   display: flex;
   flex-direction: row;
 }
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-div {
+  margin-left: 5em;
+}
