@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { User } = require('../db/models')
+const { User, Order } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  if (req.user.isAdmin === true) {
+  if (req.user && req.user.isAdmin === true) {
     User.findAll()
       .then(users => res.json(users))
       .catch(next);
@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  if (req.user.isAdmin === true || req.user.id === Number(req.params.id)) {
+  if (req.user && req.user.isAdmin === true || req,user && req.user.id === Number(req.params.id)) {
     User.findById(req.params.id)
       .then(user => res.json(user))
       .catch(next);
@@ -21,13 +21,35 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.get('/:id/orders', (req, res, next) => {
-  if (req.user.isAdmin === true || req.user.id === req.params.id) {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
     Order.findAll({
       where: {
         userId: req.params.id
       }
     })
       .then(orders => res.json(orders))
+      .catch(next);
+    }
+  else throw new Error('You are not authorized to view this user\'s order history.');
+});
+
+router.get('/:id/orders/latest', (req, res, next) => {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
+    //find all orders that have not been placed for this user (should only be one)
+    Order.findAll({
+      where: {
+        userId: req.params.id,
+        placed: false
+      }
+    })
+      .then(orders => {
+        //if there is more than one unplaced order will return the most recent
+        return orders.reduce((currOrder, nextOrder) => {
+          return currOrder.createdAt > nextOrder.createdAt ? currOrder : nextOrder
+        }, {})
+      })
+        .then(order => {
+          res.send(order)})
       .catch(next);
     }
   else throw new Error('You are not authorized to view this user\'s order history.');
@@ -44,7 +66,7 @@ router.get('/:id/orders', (req, res, next) => {
 // });
 
 router.put('/:id', (req, res, next) => {
-  if (req.user.isAdmin === true || req.user.id === req.params.id) {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
     const { name, password } = req.body;
     User.update({
       name,
@@ -61,7 +83,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 router.delete('/:id', (req, res, next) => {
-  if (req.user.isAdmin === true || req.user.id === req.params.id) {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
     User.destroy({ where: { id: req.params.id } })
     .then(user => res.send(user))
     .catch(next);

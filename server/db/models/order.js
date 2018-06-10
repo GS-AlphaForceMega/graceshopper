@@ -12,7 +12,7 @@ const Order = db.define('order', {
     total: {
         type: Sequelize.VIRTUAL,
         get() {
-            this.getDataValue('items').reduce((item1, item2) => item1.price + item2.price);
+            this.getDataValue('items').reduce((item1, item2) => item1.price + item2.price, 0);
         }
     }
     // price: {
