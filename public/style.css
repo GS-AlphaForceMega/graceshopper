@@ -29,6 +29,7 @@ form div {
   display: flex;
   flex-direction: row;
   margin: 1em;
+  flex-wrap: wrap;
 }
 
 .product_Preview {

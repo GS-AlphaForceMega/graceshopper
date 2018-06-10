@@ -2,7 +2,7 @@ const db = require('../server/db');
 const {Restaurant, Product} = require('../server/db/models');
 
 const names = [
-    '2x1 Romantic Dinner', '20%Off dinner special', '10%Off between 4pm-6pm', 'HappyHour - 25%Off', 'BuyOne - GetOne 50%Off', '20% for partys of 10 or more', '2 entrees for 1 - Enjoy!', 'Dessert on Us for every 2 entrees && +$50 purchase'
+    '2x1 Romantic Dinner', '20%Off dinner special', '10%Off between 4pm-6pm', 'HappyHour - 25%Off', 'BuyOne - GetOne 50%Off', '20% for partys of 10 or more', '2 entrees for 1 - Enjoy!', 'Dessert on Us +$50 purchase'
 ];
 
 const images = [
@@ -56,11 +56,11 @@ const restaurants = [
     }
 ];
 
-const cuisines = [
-    'chinesse', 'mexican', 'italian', 'venezuelan'
-];
+// const cuisines = [
+//     'chinesse', 'mexican', 'italian', 'venezuelan'
+// ];
 
-const restaurantId = () => Math.round(Math.random() * (restaurants.length - 1)) + 1;
+const restaurantId = () => Math.round(Math.random() * (restaurants.length - 1));
 const name = () => names[Math.round(Math.random() * (names.length - 1))];
 const imageUrl = () => images[Math.round(Math.random() * (images.length - 1))];
 const price = () => prices[Math.round(Math.random() * (prices.length - 1))];
@@ -71,13 +71,15 @@ const cuisine = () => cuisines[Math.round(Math.random() * (cuisines.length - 1))
 const createProduct = (num) => {
     let products = [];
     for (let i=0; i<num ; i++){
+        const resId = restaurantId();
+        const cuisin = restaurants[resId].cuisine;
         products.push({
             name: name(),
-            imageUrl: imageUrl()    ,
-            restaurantId: restaurantId(),
+            imageUrl: imageUrl(),
+            restaurantId: resId + 1,
             price: price(),
             quantity: quantity(),
-            cuisine: cuisine(),
+            cuisine: cuisin,
             description: description()
         });
     }

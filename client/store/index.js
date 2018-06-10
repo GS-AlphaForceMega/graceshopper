@@ -10,7 +10,7 @@ import currentProduct from './currentProduct'
 import searchBar from './searchBar'
 import cuisines from './cuisines'
 
-const reducer = combineReducers({user, products, restaurants, restaurantIds, currentProduct, searchBar, cuisines})
+const reducer = combineReducers({user, products, restaurants, restaurantIds, currentProduct, searchBar, cuisines, cart})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
