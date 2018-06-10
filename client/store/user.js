@@ -26,6 +26,7 @@ export const me = () =>
     axios.get('/auth/me')
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
+        // do fetch cart here??
       .catch(err => console.log(err))
 
 export const auth = (email, password, method) =>
