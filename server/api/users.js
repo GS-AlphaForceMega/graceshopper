@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User, Order } = require('../db/models')
+const { User, Order, Product, OrderProduct } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -35,25 +35,34 @@ router.get('/:id/orders', (req, res, next) => {
 
 router.get('/:id/orders/latest', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
-    //find all orders that have not been placed for this user (should only be one)
+    // find all orders that have not been placed for this user (should only be one)
     Order.findAll({
       where: {
         userId: req.params.id,
         placed: false
-      }
+      },
+      include: [
+        {model: Product}
+    ]
     })
-      .then(orders => {
-        //if there is more than one unplaced order will return the most recent
-        return orders.reduce((currOrder, nextOrder) => {
-          return currOrder.createdAt > nextOrder.createdAt ? currOrder : nextOrder
-        }, {})
-      })
-        .then(order => {
-          res.send(order)})
-      .catch(next);
+    .then(orders => {
+      //if there is more than one unplaced order will return the most recent
+      return orders.reduce((currOrder, nextOrder) => {
+        return currOrder.createdAt > nextOrder.createdAt ? currOrder : nextOrder
+      }, {})
+    })
+    .then(order => {
+      //send the product and quantity of each to be set on the state
+      res.send(order.products.map(product => {
+        return {product, quantity: product.orderProduct.quantity}
+      }))
+    })
+    .catch(next);
     }
   else throw new Error('You are not authorized to view this user\'s order history.');
 });
+//this should add to the through table with the right user and product and quantity
+//order.addProduct(product, through: {quantity: 1})
 
 // router.post('/', (req, res, next) => {
 //   const { name, password } = req.body;

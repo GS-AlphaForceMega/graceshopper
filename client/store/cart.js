@@ -46,6 +46,7 @@ export const fetchCart = (userId) =>
 export default function (state = defaultCart, action) {
   switch (action.type) {
     case SET_CART:
+    console.log(action.cart)
         return action.cart
     case ADD_TO_CART:
         return [...state, {product: action.product, quantity: action.quantity}]
