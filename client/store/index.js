@@ -9,6 +9,7 @@ import restaurantIds from './restaurantIds'
 import currentProduct from './currentProduct'
 import searchBar from './searchBar'
 import cuisines from './cuisines'
+import cart from './cart'
 
 const reducer = combineReducers({user, products, restaurants, restaurantIds, currentProduct, searchBar, cuisines, cart})
 const middleware = composeWithDevTools(applyMiddleware(
