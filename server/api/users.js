@@ -52,10 +52,14 @@ router.get('/:id/orders/latest', (req, res, next) => {
       }, {})
     })
     .then(order => {
-      //send the product and quantity of each to be set on the state
-      res.send(order.products.map(product => {
-        return {product, quantity: product.orderProduct.quantity}
-      }))
+      //send the product and quantity of each to be set on the state, if it exists
+      if (!order.products) {
+        res.send(undefined)
+      } else {
+        res.send(order.products.map(product => {
+          return {product, quantity: product.orderProduct.quantity}
+        }))
+      }
     })
     .catch(next);
     }
