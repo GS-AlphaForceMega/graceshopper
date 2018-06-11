@@ -3,7 +3,7 @@ import React from 'react';
 import {expect} from 'chai';
 import {createStore} from 'redux';
 import {shallow} from 'enzyme';
-import reducer, {getAllProducts, addProduct, updateProduct} from '../store/products'
+import reducer, {getAllProducts, addProduct, updateProduct} from '../../store/products'
 import { EditProduct } from './editProduct';
 
 

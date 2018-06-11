@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: lightgoldenrodyellow;
 }
 
 a {
@@ -27,7 +28,7 @@ form div {
 .all-products {
   display: flex;
   flex-direction: row;
-  margin: 1em;
+  /* margin: 1em; */
   flex-wrap: wrap;
   max-width: 75vw;
 }
@@ -38,11 +39,12 @@ form div {
 }
 
 .product_Preview {
-  border: solid 3px black;
+  border: solid 5px gold;
+  border-radius: 15px;
   width: 300px;
   height: 300px;
-  box-shadow: 2px 2px 2px;
-  background-color: lightsalmon;
+  box-shadow: 2px 2px 2px gray;
+  background-color: lightgoldenrodyellow;
   margin-left: 2em;
   margin-bottom: 2em;
   display: flex;
@@ -58,7 +60,7 @@ form div {
 }
 
 .product_Preview h2 {
-  color: darkred;
+  color: red;
   text-shadow: 1px 1px black;
 }
 
@@ -124,15 +126,20 @@ h1:first-child{
   width: 20vw;
   border-width: 5px;
   border-style: solid;
-  border-color: black;
+  border-color: gold;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px gray;
   align-items: center;
-  margin-left: 5px;
+  margin-left: 1em;
+  margin-bottom: 2em;
 }
 
-.single-product {
-  margin-left: 20px;
-  width: auto;
+.singleProduct {
+  margin-bottom: 10em;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cart {
@@ -160,10 +167,28 @@ h1:first-child{
 .search-bar {
   display: flex;
   flex-direction: column;
+  color: red;
+  text-shadow: 1px 1px 1px black;
+  margin-bottom: 1em;
 }
 
-.search-filter-checkbox {
+.search-filters {
+  color: red;
+  text-shadow: 1px 1px 1px black;
+  align-items: center;
+}
+
+.search-filters-checkbox {
+  margin-left: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-filters-checkbox-label {
   margin-left: 15px;
+  text-shadow: 0.5px 0.5px 0.5px black;
+  color: red;
 }
 
 .ui.menu .item:before {
@@ -177,4 +202,3 @@ h1:first-child{
 .ui.button {
   border:  1px lightgrey solid;
 }
-

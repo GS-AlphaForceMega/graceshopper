@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import { createProduct } from '../store/products';
+import { createProduct } from '../../store/products';
 
 
 
