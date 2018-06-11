@@ -29,6 +29,12 @@ form div {
   flex-direction: row;
   margin: 1em;
   flex-wrap: wrap;
+  max-width: 75vw;
+}
+
+.catalog {
+  display: flex;
+  flex-direction: row;
 }
 
 .product_Preview {
@@ -102,4 +108,19 @@ form div {
   width: 70%;
 }
 
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black;
+  align-items: center;
+  margin: 0;
+}
 
+.single-product {
+  margin-left: 20px;
+  width: 75vw;
+  display: flex;
+}
