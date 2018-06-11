@@ -34,7 +34,7 @@ class SingleProduct extends Component {
                             <div className="single-product-details">
                                 <div className="single-product-details-item"><h3>{this.props.product.name}</h3></div>
                                 <div className="single-product-details-item"><p>{this.props.product.description}</p></div>
-                                <div className="single-product-details-item"><h3>{this.props.product.price}</h3></div>
+                                <div className="single-product-details-item"><h3>${this.props.product.price}</h3></div>
                                 <div className="single-product-details-item"><h3>{this.props.product.quantity} Items available!</h3></div>
                                 <div><button onClick={handleClick}>Add To Cart</button></div>
                                 <div>
