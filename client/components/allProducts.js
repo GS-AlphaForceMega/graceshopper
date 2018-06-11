@@ -47,6 +47,7 @@ class AllProducts extends Component  {
         }        
         return (
             <div>
+                {console.log('the user', this.props.user)}
                 <div className="all-products">
                     {   
                         //check if there are any products if none go to last : for a message otherwise you will display products
@@ -81,7 +82,8 @@ const mapState = state => {
       products: state.products,
       restaurantIds: state.restaurantIds,
       searchBar: state.searchBar,
-      cuisines: state.cuisines
+      cuisines: state.cuisines,
+      user: state.user
     }
   }
 const mapDispatch = dispatch => {

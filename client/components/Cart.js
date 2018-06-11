@@ -4,10 +4,7 @@ import {Link} from 'react-router-dom'
 import Item from './Item.jsx';
 import Checkout from './Checkout';
 
-const items = [{id: 1, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 100, salePrice: 50, review: '****', restaurant:{id: 1}},
-{id: 2, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 110, salePrice: 50, review: '****', restaurant:{id: 1}},
-{id: 3, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 105, salePrice: 50, review: '****', restaurant:{id: 2}},
-{id:4, name: 'Rice', imageUrl: 'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg', originalPrice: 120, salePrice: 50, review: '****', restaurant:{id: 2}}]
+
 
 class Cart extends Component  {
 
@@ -16,12 +13,12 @@ class Cart extends Component  {
             <div>
                 <div className="all-items">
                     {
-                        this.props.items.map(item => {
+                        this.props.cart.map(item => {
                             return <Link to={`/products/${item.id}`} key={item.id} ><Item item={item}/></Link>
                         })
                     }
                 </div>
-                <h1>Cart Total: ${this.props.items.reduce((sum, item) => {
+                <h1>Cart Total: ${this.props.cart.reduce((sum, item) => {
                     return sum + Number(item.salePrice)
                 }, 0)}</h1>
 
@@ -41,8 +38,7 @@ class Cart extends Component  {
 const mapState = state => {
     return {
       isLoggedIn: !!state.user.id,
-      //change to state.items
-      items: items
+      cart: state.cart
     }
   }
 
