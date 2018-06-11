@@ -59,8 +59,7 @@ router.get('/:id/orders/latest', (req, res, next) => {
         let cart = order.products.map(product => {
           return {product, quantity: product.orderProduct.quantity}
         });
-        cart.orderId = order.id
-        res.send(cart);
+        res.send({cart, orderId: order.id});
       }
     })
     .catch(next);
@@ -74,8 +73,6 @@ router.post('/:userId/orders', (req, res, next) => {
   // if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
 
   const { orderId, productId } = req.body;
-  console.log('body', req.body)
-  console.log(orderId, productId)
   OrderProduct.create({
     orderId,
     productId,
@@ -95,16 +92,15 @@ router.put('/:userId/orders/increase', (req, res, next) => {
       const { orderId, productId } = req.body;
         OrderProduct.findOne({
           where: {
-            orderId,
-            productId
+            orderId: orderId,
+            productId: productId
           }
         })
         .then(subOrder => {
           let num = subOrder.quantity + 1;
           return subOrder.update({quantity: num})
         })
-        .then(result => res.send(result)
-        )
+        .then(updatedSubOrder => res.send(updatedSubOrder))
     .catch(next);
   //   }
   // else throw new Error('You are not authorized to view this user\'s order history.');
@@ -116,16 +112,15 @@ router.put('/:userId/orders/decrease', (req, res, next) => {
       const { orderId, productId } = req.body;
         OrderProduct.findOne({
           where: {
-            orderId,
-            productId
+            orderId: orderId,
+            productId: productId
           }
         })
         .then(subOrder => {
           let num = subOrder.quantity - 1;
           return subOrder.update({quantity: num})
         })
-        .then(result => res.send(result)
-        )
+        .then(updatedSubOrder => res.send(updatedSubOrder))
     .catch(next);
   //   }
   // else throw new Error('You are not authorized to view this user\'s order history.');

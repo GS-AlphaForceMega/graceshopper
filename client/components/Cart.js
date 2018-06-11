@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import Item from './Item.jsx';
 import Checkout from './Checkout';
 import { increaseCart, decreaseCart } from '../store/cart'
 
-
+// increaseCart={this.props.increaseTheCart} decreaseCart={this.props.decreaseTheCart}
 
 class Cart extends Component  {
 
@@ -15,14 +14,13 @@ class Cart extends Component  {
                 <div className="all-items">
                     {
                         this.props.cart.map(item => {
-                            return <Link to={`/products/${item.id}`} key={item.id} >
-                            <Item item={item} increaseCart={this.props.increaseCart} decreaseCart={this.props.decreaseCart} orderId={this.props.cart.orderId} />
-                            </Link>
+                            return <Item user={this.props.user} key={item.product.id} item={item}  order={this.props.order} />
                         })
                     }
                 </div>
                 <h1>Cart Total: ${this.props.cart.reduce((sum, item) => {
-                    return sum + Number(item.salePrice)
+                    let number = sum + (item.product.price * item.quantity)
+                    return Number.parseFloat(number).toFixed(2)
                 }, 0)}</h1>
 
 
@@ -41,14 +39,18 @@ class Cart extends Component  {
 const mapState = state => {
     return {
       isLoggedIn: !!state.user.id,
-      cart: state.cart
+      cart: state.cart,
+      user: state.user,
+      order: state.order
     }
   }
-const mapDispatch = dispatch => {
-    return {
-        increaseCart: (orderId, productId) => dispatch(increaseCart(orderId, productId)),
-        decreaseCart: (orderId, productId) => dispatch(decreaseCart(orderId, productId))
-    }
-}
+// const mapDispatch = dispatch => {
+//     return {
+//         increaseTheCart: (userId, orderId, productId) => {
+//             console.log('calling increasecart',userId, orderId, productId);
+//             dispatch(increaseCart(userId, orderId, productId))},
+//         decreaseTheCart: (userId,orderId, productId) => dispatch(decreaseCart(userId, orderId, productId))
+//     }
+// }
 
   export default connect(mapState)(Cart)
