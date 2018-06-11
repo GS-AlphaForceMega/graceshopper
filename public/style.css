@@ -141,12 +141,31 @@ h1:first-child{
   margin-bottom: 2em;
 }
 
-.singleProduct {
+.single-product {
+  margin: 20px;
+  width: 75vw;
+  margin-left: 5em;
   margin-bottom: 10em;
   width: 100vw;
   display: flex;
+  flex-direction: row;
+  background-color: lightsteelblue;
+  border: solid 2px black;
+}
+
+.single-product img {
+  width: 100%;
+  height: 100%;
+}
+
+.single-product-details {
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 20px;
+}
+
+.single-product-details-item {
+  margin: 10px;
 }
 
 .cart {
