@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Item from './Item.jsx';
 import Checkout from './Checkout';
+import { increaseCart, decreaseCart } from '../store/cart'
 
 
 
@@ -14,7 +15,9 @@ class Cart extends Component  {
                 <div className="all-items">
                     {
                         this.props.cart.map(item => {
-                            return <Link to={`/products/${item.id}`} key={item.id} ><Item item={item}/></Link>
+                            return <Link to={`/products/${item.id}`} key={item.id} >
+                            <Item item={item} increaseCart={this.props.increaseCart} decreaseCart={this.props.decreaseCart} orderId={this.props.cart.orderId} />
+                            </Link>
                         })
                     }
                 </div>
@@ -41,5 +44,11 @@ const mapState = state => {
       cart: state.cart
     }
   }
+const mapDispatch = dispatch => {
+    return {
+        increaseCart: (orderId, productId) => dispatch(increaseCart(orderId, productId)),
+        decreaseCart: (orderId, productId) => dispatch(decreaseCart(orderId, productId))
+    }
+}
 
   export default connect(mapState)(Cart)

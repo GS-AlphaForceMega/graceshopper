@@ -2,6 +2,7 @@ import React from 'react';
 
 const Item = (props) =>  {
         const item = props.item;
+        const itemId = item.id;
         return (
             <div className="item">
                 <div className="item_image">
@@ -13,6 +14,8 @@ const Item = (props) =>  {
                     <div><h2>You Pay: ${item.salePrice}</h2></div>
                     <div><h2>{item.review}</h2></div>
                 </div>
+                <button onClick={(orderId, itemId) => props.increaseCart}>Add</button>
+                <button onClick={(orderId, itemId) => props.decreaseCart}>Remove</button>
             </div>
         )
 }

@@ -37,8 +37,26 @@ export const fetchCart = (userId) =>
         axios.get(`/api/users/${userId}/orders/latest`)
         .then(order => dispatch(setCart(order.data || [])))
         .catch(err => console.error(err))
-
-
+export const fillCart = (productId) =>
+    dispatch => 
+        axios.post(`/api/users/${userId}/orders`, {orderId, productId})
+        .then(order => dispatch(addToCart(order, 1)))
+        .catch(err => console.error(err))
+export const increaseCart = (productId) =>
+    dispatch => 
+        axios.put(`/api/users/${userId}/orders/increase`, {orderId, productId})
+        .then(order => dispatch(increaseInCart(order.id)))
+        .catch(err => console.error(err))
+export const decreaseCart = (productId) =>
+    dispatch => 
+        axios.put(`/api/users/${userId}/orders/decrease`, {orderId, productId})
+        .then(order => dispatch(decreaseInCart(order.id)))
+        .catch(err => console.error(err))
+export const removeCart = (productId) =>
+    dispatch => 
+        axios.delete(`/api/users/${userId}/orders`, {orderId})
+        .then(order => dispatch(removeFromCart(order.id)))
+        .catch(err => console.error(err))
 
 /**
  * REDUCER
