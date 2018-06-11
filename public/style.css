@@ -43,8 +43,8 @@ form div {
   border-radius: 15px;
   width: 300px;
   height: 300px;
-  box-shadow: 2px 2px 2px;
-  background-color: lightsalmon;
+  box-shadow: 2px 2px 2px gray;
+  background-color: lightgoldenrodyellow;
   margin-left: 2em;
   margin-bottom: 2em;
   display: flex;
@@ -60,7 +60,7 @@ form div {
 }
 
 .product_Preview h2 {
-  color: darkred;
+  color: red;
   text-shadow: 1px 1px black;
 }
 
@@ -124,9 +124,9 @@ form div {
   border-style: solid;
   border-color: gold;
   border-radius: 15px;
-  box-shadow: 2px 2px 2px;
+  box-shadow: 2px 2px 2px gray;
   align-items: center;
-  margin-left: 5px;
+  margin-left: 1em;
   margin-bottom: 2em;
 }
 
@@ -167,8 +167,18 @@ form div {
 .search-bar {
   display: flex;
   flex-direction: column;
+  color: red;
+  text-shadow: 1px 1px 1px black;
+  margin-bottom: 1em;
+}
+
+.search-filters {
+  color: red;
+  text-shadow: 1px 1px 1px black;
 }
 
 .search-filter-checkbox {
   margin-left: 15px;
+  text-shadow: 1px 1px 1px black;
+  color: red;
 }
