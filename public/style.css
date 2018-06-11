@@ -59,6 +59,12 @@ form div {
   text-shadow: 0.5px 0.5px darkgreen;
 }
 
+.product_Preview:hover {
+  background-color: lightsalmon;
+  color: greenyellow;
+  transition: 0.2s ease;
+}
+
 .product_Preview h2 {
   color: red;
   text-shadow: 1px 1px black;
@@ -69,9 +75,9 @@ form div {
   text-shadow: 1px 1px black;
 }
 
-.product_Preview a:hover {
+/* .product_Preview a:hover {
   color: yellow;
-}
+} */
 
 .product_image, .product_details {
   margin: 0.5em;
