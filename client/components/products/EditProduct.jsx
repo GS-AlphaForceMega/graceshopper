@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 // import { editProduct } from '../store/products';
-import { fetchProduct, editCurrentProduct } from '../store/currentProduct';
+import { fetchProduct, editCurrentProduct } from '../../store/currentProduct';
 import axios from 'axios';
-import store from './../store'
+import store from '../../store'
 
 //should this push to new history of updated product????
 //would probably be better to have a change handler that updates the store state
