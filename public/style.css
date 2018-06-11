@@ -16,7 +16,6 @@ nav a {
 }
 
 form div {
-  margin: 1em;
   display: inline-block;
 }
 
@@ -31,6 +30,11 @@ form div {
   margin: 1em;
   flex-wrap: wrap;
   max-width: 75vw;
+}
+
+.catalog {
+  display: flex;
+  flex-direction: row;
 }
 
 .product_Preview {
@@ -67,10 +71,12 @@ form div {
 .auth-form {
   display: flex;
   flex-direction: column;
+  padding-right: 2em;
 }
 
 .auth-div {
-  margin-left: 5em;
+  margin: auto;
+  width: 70%;
 }
 
 .sidebar {
