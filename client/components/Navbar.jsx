@@ -60,7 +60,6 @@ const Navbar = ({ handleClick, isLoggedIn, user, cart }) => (
         )}
       </div>
     </Menu>
-    <hr />
   </div>
 );
 
