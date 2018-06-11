@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import Item from './Item.jsx';
-import Checkout from './Checkout';
+import Checkout from './Checkout.jsx';
 import { increaseCart, decreaseCart } from '../store/cart'
 
 // increaseCart={this.props.increaseTheCart} decreaseCart={this.props.decreaseTheCart}
