@@ -29,10 +29,45 @@ form div {
   flex-direction: row;
   margin: 1em;
   flex-wrap: wrap;
+  max-width: 75vw;
+}
+
+.catalog {
+  display: flex;
+  flex-direction: row;
 }
 
 .product_Preview {
-  margin: 1em
+  margin: 1em;
+  border: solid 3px black;
+  width: 300px;
+  height: 300px;
+  box-shadow: 2px 2px 2px;
+  background-color: lightsalmon; 
+}
+
+.product_Preview h3 {
+  color: green;
+  text-shadow: 0.5px 0.5px darkgreen;
+}
+
+.product_Preview h2 {
+  color: darkred;
+  text-shadow: 1px 1px black;
+}
+
+#availability {
+  color: red;
+  text-shadow: 1px 1px black;
+}
+
+.product_Preview a:hover {
+  color: yellow;
+}
+
+.product_image, .product_details {
+  margin: 0.5em;
+  align-content: center;
 }
 
 .all-items {
@@ -73,4 +108,26 @@ form div {
   width: 70%;
 }
 
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black;
+  align-items: center;
+  margin: 0;
+}
 
+.single-product {
+  margin-left: 20px;
+  width: 75vw;
+  display: flex;
+}
+
+.cart {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  flex-direction: column;
+}
