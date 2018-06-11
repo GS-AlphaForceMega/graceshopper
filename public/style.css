@@ -32,7 +32,36 @@ form div {
 }
 
 .product_Preview {
-  margin: 1em
+  margin: 1em;
+  border: solid 3px black;
+  width: 300px;
+  height: 300px;
+  box-shadow: 2px 2px 2px;
+  background-color: lightsalmon; 
+}
+
+.product_Preview h3 {
+  color: green;
+  text-shadow: 0.5px 0.5px darkgreen;
+}
+
+.product_Preview h2 {
+  color: darkred;
+  text-shadow: 1px 1px black;
+}
+
+#availability {
+  color: red;
+  text-shadow: 1px 1px black;
+}
+
+.product_Preview a:hover {
+  color: yellow;
+}
+
+.product_image, .product_details {
+  margin: 0.5em;
+  align-content: center;
 }
 
 .all-items {
