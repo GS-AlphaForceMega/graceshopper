@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchProduct } from '../../store/currentProduct';
+import { fetchCart, fillCart } from '../../store/cart'
 
 // import {Link} from 'react-router-dom'
 
@@ -56,12 +57,14 @@ class SingleProduct extends Component {
 
 
 function handleClick(evnt) {
+    const userCart = fetchCart
 
 }
 
 const mapState = state => {
     return {
         isLoggedIn: !!state.user.id,
+        user: state.user,
         product: state.currentProduct,
     }
 }
