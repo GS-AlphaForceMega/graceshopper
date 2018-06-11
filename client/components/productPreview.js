@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductPreview = (props) =>  {
+const ProductPreview = (props) =>  { //RT & CG: Keep naming conventions consistent
         const product = props.product;
         return (
             <div className="product_Preview">
@@ -18,4 +18,16 @@ const ProductPreview = (props) =>  {
         )
 }
 
+/*
+ .product-thumbnail {
+
+     &-image {
+
+     }
+ }
+
+.product-thumbnail 
+.product-thumbnail-image 
+
+*/
 export default ProductPreview;

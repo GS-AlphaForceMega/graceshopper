@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Item from './Item.jsx';
 import Checkout from './Checkout';
 
 
 
-class Cart extends Component  {
+class Cart extends Component {
 
-    render(){
+    render() {
         return (
             <div className="cart">
                 <div className="all-items">
                     {
                         this.props.cart.map(item => {
-                            return <Link to={`/products/${item.id}`} key={item.id} ><Item item={item}/></Link>
+                            return <Link to={`/products/${item.id}`} key={item.id} >
+                            <Item item={item} /></Link>
                         })
                     }
                 </div>
@@ -23,11 +24,11 @@ class Cart extends Component  {
                 }, 0)}</h1>
 
 
-<Checkout
-  name={'The best deals in your city'}
-  description={'Enter valid email for getttin tickets'}
-  amount={1}
-/>
+                <Checkout
+                    name={'The best deals in your city'}
+                    description={'Enter valid email for getttin tickets'}
+                    amount={1}
+                />
 
             </div>
         )
@@ -37,9 +38,9 @@ class Cart extends Component  {
 
 const mapState = state => {
     return {
-      isLoggedIn: !!state.user.id,
-      cart: state.cart
+        isLoggedIn: !!state.user.id,
+        cart: state.cart
     }
-  }
+}
 
-  export default connect(mapState)(Cart)
+export default connect(mapState)(Cart)

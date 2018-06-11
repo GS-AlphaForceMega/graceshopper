@@ -33,6 +33,8 @@ router.get('/:id/orders', (req, res, next) => {
   else throw new Error('You are not authorized to view this user\'s order history.');
 });
 
+//IF THIS IS CART call it CART
+//Shouldn't this be a find one? 
 router.get('/:id/orders/latest', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
     // find all orders that have not been placed for this user (should only be one)
@@ -45,6 +47,7 @@ router.get('/:id/orders/latest', (req, res, next) => {
         {model: Product}
     ]
     })
+    //Remove this.
     .then(orders => {
       //if there is more than one unplaced order will return the most recent
       return orders.reduce((currOrder, nextOrder) => {
@@ -64,6 +67,8 @@ router.get('/:id/orders/latest', (req, res, next) => {
     .catch(next);
     }
   else throw new Error('You are not authorized to view this user\'s order history.');
+  //are you trying to crash the server?
+  // CoreyRulezDanDroolz -- 50% off code. 
 });
 //this should add to the through table with the right user and product and quantity
 //order.addProduct(product, through: {quantity: 1})

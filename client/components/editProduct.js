@@ -13,7 +13,7 @@ import store from './../store'
 export class EditProduct extends Component {
     constructor(props) {
         super(props);
-        this.state = store.getState().currentProduct;
+        this.state = store.getState().currentProduct; //RT: Why using React state and not Redux state?
         //this.state = store.getState().product
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,7 +21,7 @@ export class EditProduct extends Component {
 
     componentDidMount() {
         this.unsubscribe = store.subscribe(() => {
-            this.setState(store.getState().currentProduct)
+            this.setState(store.getState().currentProduct) //RT & CG: Connected component that is also subscribed to store - confusing
         })
         let productId = Number(this.props.match.params.productId)
         axios.get(`/api/products/${productId}`)
@@ -45,11 +45,11 @@ export class EditProduct extends Component {
     handleChange(event) {
         const name = event.target.name;
         const value = event.target.value;
-        this.setState({ [name]: value });
+        this.setState({ [name]: value }); 
     }
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state)
+        console.log(this.state) //RT: more console logs
         this.props.submitEdit(this.state);
     }
 

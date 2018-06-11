@@ -34,8 +34,11 @@ const App = () => {
 
       {/* <Routes /> */}
 {/*        <Sidebar /> */}
+
+{/*  CG: MAKE SINGLE SOURCE OF ROUTING FOR MAJOR ROUTES */}
       <Route exact path="/"component={AllProducts} />
       <Route exact path="/products" component={AllProducts} />
+      {/*  CG: MAKE FE routes restful too. /products/:productId/edit */}
       <Route exact path="/edit/products/:productId" component={EditProduct} />
       <Route exact path="/add/product" component={AddProduct} />
       <Route exact path="/products/:productId" component={SingleProduct} />

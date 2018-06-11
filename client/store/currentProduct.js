@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+//RT: Does this need to be its own reducer?
+
 /**
  * ACTION TYPES
  */
@@ -27,7 +29,7 @@ export const updateCurrentProduct = product => ({type: UPDATE_CURRENT_PRODUCT, p
 /**
  * THUNK CREATORS
  */
-export const fetchProduct = (productId) =>
+export const fetchProduct = (productId) => 
   dispatch =>
     axios.get(`/api/products/${productId}`)
       .then(res =>

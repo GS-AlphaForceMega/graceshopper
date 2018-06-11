@@ -5,7 +5,7 @@ const Op = Sequelize.Op
 module.exports = router;
 
 router.get('/', (req, res, next) => {
-    console.log('hello')
+    console.log('hello') //RT: Don't commit console logs.
     console.log('the user, allp',req.user)
     Product.findAll({
         include: ['restaurant', 'reviews']

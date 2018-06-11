@@ -5,7 +5,7 @@ import ProductPreview from './productPreview';
 import { fetchProducts } from '../store/products';
 import Sidebar from './sidebar';
 
-const products = [
+const products = [ //RT: No more hardcoded products
   {
     id: 1,
     name: 'Rice',
@@ -47,7 +47,7 @@ const products = [
     restaurant: { id: 2 },
   },
 ];
-const restaurantIds = [1, 2];
+const restaurantIds = [1, 2]; //RT: ditto this
 
 class AllProducts extends Component {
   constructor() {
@@ -59,7 +59,7 @@ class AllProducts extends Component {
   }
 
   render() {
-    const restaurantIds = this.props.restaurantIds;
+    const restaurantIds = this.props.restaurantIds; //CG: Destructure
     const searchBar = this.props.searchBar;
     const cuisines = this.props.cuisines;
     //starting with all the products means you can filter it as needed
@@ -73,7 +73,7 @@ class AllProducts extends Component {
       });
     }
     //if there is a search you want to filter the products, if not then dont
-    if (searchBar.length >= 1) {
+    if (searchBar.length >= 1) { //CG: Keep it dry, consider a helper function maybe
       filteredProducts = filteredProducts.filter(product => {
         return product.name.includes(searchBar);
       });
@@ -87,7 +87,7 @@ class AllProducts extends Component {
     }
     return (
         <div className="catalog">
-            <Sidebar />
+            <Sidebar /> {/* CG: Sidebar in allProducts component - no */}
             <div>
             {console.log('the user', this.props.user)}
                 <div className="all-products">

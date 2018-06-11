@@ -4,7 +4,7 @@ const configureStripe = require('stripe');
 const STRIPE_SECRET_KEY =
   process.env.NODE_ENV === 'production'
     ? 'sk_live_MY_SECRET_KEY'
-    : 'sk_test_htbNVKwf56wr5QkLe0RwlSDz';
+    : 'sk_test_htbNVKwf56wr5QkLe0RwlSDz'; //CG
 
 const stripe = configureStripe(STRIPE_SECRET_KEY);
 
