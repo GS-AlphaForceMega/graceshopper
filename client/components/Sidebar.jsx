@@ -67,9 +67,9 @@ class Sidebar extends Component  {
                     {
                         restaurants.map(restaurant => {
                             return (
-                                <div className="search-filter-checkbox" key={restaurant.id}>
+                                <div className="search-filters-checkbox" key={restaurant.id}>
                                     <input onClick={this.onClickHandler} id={restaurant.id} type='checkbox' name='restaurant' value={restaurant.id} />
-                                    <label htmlFor={restaurant.id}>{restaurant.name}</label>
+                                    <label className="search-filters-checkbox-label" htmlFor={restaurant.id}>{restaurant.name}</label>
                                 </div>
                             )
                         })
@@ -78,9 +78,9 @@ class Sidebar extends Component  {
                     {
                         cuisines.map(cuisine => {
                             return (
-                                <div className="search-filter-checkbox" key={cuisine}>
+                                <div className="search-filters-checkbox" key={cuisine}>
                                     <input onClick={this.cuisineClickHandler} type='checkbox' name='cuisine' value={cuisine} />
-                                    <label htmlFor={cuisine}>{cuisine}</label>
+                                    <label className="search-filters-checkbox-label" htmlFor={cuisine}>{cuisine[0].toUpperCase() + cuisine.slice(1)}</label>
                                 </div>
                             )
                         })

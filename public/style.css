@@ -130,11 +130,12 @@ form div {
   margin-bottom: 2em;
 }
 
-.single-product {
-  margin-left: 5em;
+.singleProduct {
   margin-bottom: 10em;
-  width: auto;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cart {
@@ -155,10 +156,18 @@ form div {
 .search-filters {
   color: red;
   text-shadow: 1px 1px 1px black;
+  align-items: center;
 }
 
-.search-filter-checkbox {
+.search-filters-checkbox {
+  margin-left: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-filters-checkbox-label {
   margin-left: 15px;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 0.5px 0.5px 0.5px black;
   color: red;
 }
