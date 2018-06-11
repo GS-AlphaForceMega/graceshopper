@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ProductPreview from './productPreview';
-import { fetchProducts } from '../store/products';
-import Sidebar from './sidebar';
+import ProductPreview from './ProductPreview.jsx';
+import { fetchProducts } from '../../store';
+import Sidebar from '../Sidebar.jsx';
 
 const products = [
   {
