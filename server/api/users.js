@@ -47,20 +47,19 @@ router.get('/:id/orders/latest', (req, res, next) => {
     })
     .then(orders => {
       //if there is more than one unplaced order will return the most recent
+      if (orders.length === 0) {
+        return Order.create()
+      }
       return orders.reduce((currOrder, nextOrder) => {
         return currOrder.createdAt > nextOrder.createdAt ? currOrder : nextOrder
       }, {})
     })
     .then(order => {
       //send the product and quantity of each to be set on the state, if it exists
-      if (!order.products) {
-        res.send(undefined)
-      } else {
-        let cart = order.products.map(product => {
-          return {product, quantity: product.orderProduct.quantity}
-        });
-        res.send({cart, orderId: order.id});
-      }
+      let cart = order.products.map(product => {
+        return {product, quantity: product.orderProduct.quantity}
+      });
+      res.send({cart, orderId: order.id});
     })
     .catch(next);
     }
