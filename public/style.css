@@ -95,3 +95,13 @@ form div {
   width: 75vw;
   display: flex;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ui.menu:after {
+  content: none;
+}
+
