@@ -103,9 +103,13 @@ class AllProducts extends Component {
                                 <Link to={`/products/${product.id}`}>
                                 <ProductPreview product={product} />
                                 </Link>
-                                <Link to={`edit/products/${product.id}`}>
-                                <button>Edit</button>
-                                </Link>
+                                {
+                                    this.props.user.isAdmin ? (
+                                        <Link to={`edit/products/${product.id}`} user={this.props.user}>
+                                            <button>Edit</button>
+                                        </Link>
+                                    ) : null
+                                }
                             </div>
                             );
                         })
