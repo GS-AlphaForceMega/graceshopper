@@ -10,7 +10,7 @@ class Cart extends Component  {
 
     render(){
         return (
-            <div>
+            <div className="cart">
                 <div className="all-items">
                     {
                         this.props.cart.map(item => {
