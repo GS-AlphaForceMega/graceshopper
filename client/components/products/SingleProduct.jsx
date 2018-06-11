@@ -27,6 +27,7 @@ class SingleProduct extends Component {
         }
 
         return (
+<<<<<<< HEAD
             <div>
                 {
                     this.props.product.name ?
@@ -50,6 +51,23 @@ class SingleProduct extends Component {
                         : (<h3>Product not found.</h3>)
                 }
             </div >
+=======
+            <div className="singleProduct">{
+                this.props.product.name ?
+                    (<div className="singleProduct-display">
+                        {console.log('single producttttttttttt',this.props)}
+                        <div><img src={this.props.product.imageUrl} /></div>
+                        <div>
+                            <h3>{this.props.product.name}</h3>
+                            <p>{this.props.product.description}</p>
+                            <h3>{this.props.product.price}</h3>
+                            <p>{this.props.product.review}</p>
+                        </div>
+                        <button onClick={handleClick}>Add To Cart</button>
+                    </div>)
+                : (<h3>Product not found.</h3>)
+            }</div>
+>>>>>>> master
         )
     }
 
