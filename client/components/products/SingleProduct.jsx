@@ -14,10 +14,6 @@ class SingleProduct extends Component {
         this.props.getProduct(Number(this.props.match.params.productId))
     }
 
-    handleClick(event) {
-
-    }
-
     render() {
         const productId = this.props.match.params.productId;
         const createOptions = (optionsNumber) => {
@@ -55,6 +51,11 @@ class SingleProduct extends Component {
             </div >
         )
     }
+
+}
+
+
+function handleClick(evnt) {
 
 }
 
