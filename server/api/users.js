@@ -56,9 +56,10 @@ router.get('/:id/orders/latest', (req, res, next) => {
       if (!order.products) {
         res.send(undefined)
       } else {
-        res.send(order.products.map(product => {
+        let cart = order.products.map(product => {
           return {product, quantity: product.orderProduct.quantity}
-        }))
+        });
+        res.send({cart, orderId: order.id});
       }
     })
     .catch(next);
@@ -67,6 +68,64 @@ router.get('/:id/orders/latest', (req, res, next) => {
 });
 //this should add to the through table with the right user and product and quantity
 //order.addProduct(product, through: {quantity: 1})
+
+router.post('/:userId/orders', (req, res, next) => {
+  // if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
+
+  const { orderId, productId } = req.body;
+  OrderProduct.create({
+    orderId,
+    productId,
+    quantity: 1
+  })
+  .then(subOrder => {
+    console.log('suborderrrrr', subOrder)
+    res.send(subOrder)
+  })
+  //   }
+  // else throw new Error('You are not authorized to view this user\'s order history.');
+});
+
+router.put('/:userId/orders/increase', (req, res, next) => {
+  // if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
+      //fix this so you get productId off the body 
+      const { orderId, productId } = req.body;
+        OrderProduct.findOne({
+          where: {
+            orderId: orderId,
+            productId: productId
+          }
+        })
+        .then(subOrder => {
+          let num = subOrder.quantity + 1;
+          return subOrder.update({quantity: num})
+        })
+        .then(updatedSubOrder => res.send(updatedSubOrder))
+    .catch(next);
+  //   }
+  // else throw new Error('You are not authorized to view this user\'s order history.');
+});
+
+router.put('/:userId/orders/decrease', (req, res, next) => {
+  // if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
+      //fix this so you get productId off the body 
+      const { orderId, productId } = req.body;
+        OrderProduct.findOne({
+          where: {
+            orderId: orderId,
+            productId: productId
+          }
+        })
+        .then(subOrder => {
+          let num = subOrder.quantity - 1;
+          return subOrder.update({quantity: num})
+        })
+        .then(updatedSubOrder => res.send(updatedSubOrder))
+    .catch(next);
+  //   }
+  // else throw new Error('You are not authorized to view this user\'s order history.');
+});
+
 
 // router.post('/', (req, res, next) => {
 //   const { name, password } = req.body;
