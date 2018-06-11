@@ -57,8 +57,7 @@ class SingleProduct extends Component {
 
 
 function handleClick(evnt) {
-    const userCart = fetchCart
-
+    const userCart = fetchCart(this.props.user.id);
 }
 
 const mapState = state => {
