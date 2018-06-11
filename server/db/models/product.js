@@ -32,10 +32,12 @@ const Product = db.define('product', {
             min: 0
         }
     },
-    // availability: {
-    //     type: Sequelize.BOOLEAN,
-    //     defaultValue: true
-    // },
+    availability: {
+        type: Sequelize.VIRTUAL,
+        get() {
+            return this.quantity > 0;
+        }
+    }
     // limitedQuantity: {
     //     type: Sequelize.BOOLEAN,
     //     defaultValue: false

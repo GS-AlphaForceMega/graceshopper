@@ -57,17 +57,17 @@ class Sidebar extends Component  {
         // })
         return (
             <div className="sidebar">
-                <div>
+                <div className="search-bar">
                    <h2>Search By Deal Name</h2>
                    <input name='searchInput' placeholder="Deal name..."
                    value={this.props.searchBar} onChange={this.handleChange}/>
                 </div>
-                <div>
+                <div className="search-filters">
                     <h2>Search By Restaurant</h2>
                     {
                         restaurants.map(restaurant => {
                             return (
-                                <div key={restaurant.id}>
+                                <div className="search-filter-checkbox" key={restaurant.id}>
                                     <input onClick={this.onClickHandler} id={restaurant.id} type='checkbox' name='restaurant' value={restaurant.id} />
                                     <label htmlFor={restaurant.id}>{restaurant.name}</label>
                                 </div>
@@ -78,7 +78,7 @@ class Sidebar extends Component  {
                     {
                         cuisines.map(cuisine => {
                             return (
-                                <div key={cuisine}>
+                                <div className="search-filter-checkbox" key={cuisine}>
                                     <input onClick={this.cuisineClickHandler} type='checkbox' name='cuisine' value={cuisine} />
                                     <label htmlFor={cuisine}>{cuisine}</label>
                                 </div>
