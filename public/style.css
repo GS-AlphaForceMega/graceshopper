@@ -59,6 +59,12 @@ form div {
   text-shadow: 0.5px 0.5px darkgreen;
 }
 
+.product_Preview:hover {
+  background-color: lightsalmon;
+  color: greenyellow;
+  transition: 0.2s ease;
+}
+
 .product_Preview h2 {
   color: red;
   text-shadow: 1px 1px black;
@@ -69,9 +75,9 @@ form div {
   text-shadow: 1px 1px black;
 }
 
-.product_Preview a:hover {
+/* .product_Preview a:hover {
   color: yellow;
-}
+} */
 
 .product_image, .product_details {
   margin: 0.5em;
@@ -105,6 +111,7 @@ h1:first-child{
 }
 
 .middle-section {
+  margin-top: 1em;
   display: flex;
   flex-direction: row;
 }
@@ -170,10 +177,12 @@ h1:first-child{
   color: red;
   text-shadow: 1px 1px 1px black;
   margin-bottom: 1em;
+  margin-top: 0.25em;
 }
 
 .search-filters {
   color: red;
+  margin-bottom: 2em;
   text-shadow: 1px 1px 1px black;
   align-items: center;
 }
@@ -199,6 +208,12 @@ h1:first-child{
   background-color: rgb(241, 245, 184);
   margin-bottom: 0em;
 }
+
 .ui.button {
   border:  1px lightgrey solid;
 }
+
+/* .singleProduct-image {
+  max-height: 100px;
+  width: auto;
+} */
