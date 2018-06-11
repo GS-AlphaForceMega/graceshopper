@@ -29,7 +29,7 @@ const App = () => {
     <div>
       <Navbar />
       <div className="middle-section">
-        <Sidebar />
+      
 {/*          <Route exact path="/products" component={AllProducts} /> */}
 
       {/* <Routes /> */}
