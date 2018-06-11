@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ProductPreview from './productPreview';
-import { fetchProducts } from '../store/products';
-import Sidebar from './sidebar';
+import ProductPreview from './ProductPreview.jsx';
+import { fetchProducts } from '../../store';
+import Sidebar from '../Sidebar.jsx';
 
 const products = [
   {
@@ -103,9 +103,13 @@ class AllProducts extends Component {
                                 <Link to={`/products/${product.id}`}>
                                 <ProductPreview product={product} />
                                 </Link>
-                                <Link to={`edit/products/${product.id}`}>
-                                <button>Edit</button>
-                                </Link>
+                                {
+                                    this.props.user.isAdmin ? (
+                                        <Link to={`edit/products/${product.id}`} user={this.props.user}>
+                                            <button>Edit</button>
+                                        </Link>
+                                    ) : null
+                                }
                             </div>
                             );
                         })
