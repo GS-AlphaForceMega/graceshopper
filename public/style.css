@@ -95,3 +95,10 @@ form div {
   width: 75vw;
   display: flex;
 }
+
+.cart {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  flex-direction: column;
+}

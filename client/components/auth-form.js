@@ -18,7 +18,7 @@ const AuthForm = props => {
       <Message
         attached
         header="Welcome to our site!"
-        content={`Fill out the form below to ${displayName} for an account`}
+        content={`Fill out the form below to ${(name === 'login' ? 'log in to your' : name === 'signup' ? 'sign up for an' : '')} account:`}
       />
 
       <Form
