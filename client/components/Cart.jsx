@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Item from './Item.jsx';
-import Checkout from './Checkout';
+import Checkout from './Checkout.jsx';
 
 
 

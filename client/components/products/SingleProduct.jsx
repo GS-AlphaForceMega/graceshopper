@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD:client/components/singleProduct.js
 import { connect } from 'react-redux'
 import { fetchProduct } from '../store/currentProduct';
+=======
+import {connect} from 'react-redux'
+import { fetchProduct } from '../../store/currentProduct';
+>>>>>>> master:client/components/products/SingleProduct.jsx
 // import {Link} from 'react-router-dom'
 
 
