@@ -25,7 +25,7 @@ class Sidebar extends Component  {
         } else {
             store.dispatch(removeRestaurantId(restaurantId));
         }
-    }   
+    }
 
     handleChange(event) {
         this.props.changeSearch(event.target.value);
@@ -59,7 +59,7 @@ class Sidebar extends Component  {
             <div>
                 <div>
                    <h2>Search By Deal Name</h2>
-                   <input name='searchInput' placeholder="Deal name..." 
+                   <input name='searchInput' placeholder="Deal name..."
                    value={this.props.searchBar} onChange={this.handleChange}/>
                 </div>
                 <div>
@@ -82,14 +82,14 @@ class Sidebar extends Component  {
                                     <input onClick={this.cuisineClickHandler} type='checkbox' name='cuisine' value={cuisine} />
                                     <label htmlFor={cuisine}>{cuisine}</label>
                                 </div>
-                            )  
+                            )
                         })
                     }
                 </div>
             </div>
         )
     }
-    
+
 }
 
 
@@ -110,10 +110,10 @@ const mapDispatch = dispatch => {
         changeSearch: (search) => dispatch(changeSearch(search))
     }
 }
-  
-  
+
+
 export default connect(mapState, mapDispatch)(Sidebar)
-  
+
   /**
    * PROP TYPES
    */

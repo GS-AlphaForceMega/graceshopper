@@ -89,28 +89,30 @@ const createProduct = (num) => {
 const products = createProduct (30);
 
 
-const seed = () =>
-    Promise.all(restaurants.map(restaurant =>
-        Restaurant.create(restaurant)))
-        .then(() =>
-            Promise.all(products.map(product =>
-                Product.create(product))));
+// const seed = () =>
+//     Promise.all(restaurants.map(restaurant =>
+//         Restaurant.create(restaurant)))
+//         .then(() =>
+//             Promise.all(products.map(product =>
+//                 Product.create(product))));
 
-const main = () => {
-    console.log('Syncing db...');
-    db.sync({ force: true })
-        .then(() => {
-            console.log('Seeding databse...');
-            return seed();
-        })
-        .catch(err => {
-            console.log('Error while seeding');
-            console.log(err.stack);
-        })
-        .then(() => {
-            db.close();
-            return null;
-        });
-};
+// const main = () => {
+//     console.log('Syncing db...');
+//     db.sync({ force: true })
+//         .then(() => {
+//             console.log('Seeding databse...');
+//             return seed();
+//         })
+//         .catch(err => {
+//             console.log('Error while seeding');
+//             console.log(err.stack);
+//         })
+//         .then(() => {
+//             db.close();
+//             return null;
+//         });
+// };
 
-main();
+// main();
+
+module.exports = {restaurants, products}

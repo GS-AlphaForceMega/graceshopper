@@ -14,6 +14,7 @@ const AuthForm = props => {
 
   return (
     <div className="auth-div">
+
       <Message
         attached
         header="Welcome to our site!"
@@ -25,6 +26,7 @@ const AuthForm = props => {
         onSubmit={handleSubmit}
         name={name}
       >
+
         <div>
           {name === 'signup' ? (
             <Form.Group widths="equal">
@@ -104,6 +106,7 @@ const mapSignup = state => {
 
 const mapDispatch = dispatch => {
   return {
+
     handleSubmit(evt) {
       evt.preventDefault();
       const formName = evt.target.name;
@@ -113,6 +116,7 @@ const mapDispatch = dispatch => {
     },
   };
 };
+
 
 export const Login = connect(
   mapLogin,
