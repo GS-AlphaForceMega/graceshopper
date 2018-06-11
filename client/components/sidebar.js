@@ -56,7 +56,7 @@ class Sidebar extends Component  {
         //     }
         // })
         return (
-            <div>
+            <div className="sidebar">
                 <div>
                    <h2>Search By Deal Name</h2>
                    <input name='searchInput' placeholder="Deal name..."
