@@ -24,7 +24,7 @@ class SingleProduct extends Component  {
                 this.props.product.name ?
                     (<div className="singleProduct-display">
                         {console.log('single producttttttttttt',this.props)}
-                        <div><img src={this.props.product.imageUrl} /></div>
+                        <img className="singleProduct-image" src={this.props.product.imageUrl} />
                         <div>
                             <h3>{this.props.product.name}</h3>
                             <p>{this.props.product.description}</p>
