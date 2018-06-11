@@ -30,6 +30,7 @@ form div {
   flex-direction: row;
   margin: 1em;
   flex-wrap: wrap;
+  max-width: 75vw;
 }
 
 .product_Preview {
@@ -70,4 +71,21 @@ form div {
 
 .auth-div {
   margin-left: 5em;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black;
+  align-items: center;
+  margin: 0;
+}
+
+.single-product {
+  margin-left: 20px;
+  width: 75vw;
+  display: flex;
 }
