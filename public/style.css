@@ -51,7 +51,7 @@ form div {
   width: 250px;
   height: 300px;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 .product_Preview h3 {
@@ -101,9 +101,13 @@ form div {
   text-shadow: 2px 2px black;
   color: red;
   background-color: gold;
-  margin: 0px;
+  border: 1px lightgrey solid;
+  margin: 10px;
   width: 4.6em;
   border-radius: 75% 25%;
+}
+h1:first-child{
+  margin: 10px;
 }
 
 .middle-section {
@@ -151,6 +155,21 @@ form div {
   flex-direction: column;
 }
 
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.header-right {
+  display: flex;
+}
+ .header-padding{
+   padding-top: 3em;
+ }
+
+.ui.menu:after {
+  content: none;
+}
+
 .search-bar {
   display: flex;
   flex-direction: column;
@@ -176,4 +195,16 @@ form div {
   margin-left: 15px;
   text-shadow: 0.5px 0.5px 0.5px black;
   color: red;
+}
+
+.ui.menu .item:before {
+  content: none;
+}
+
+.ui.menu {
+  background-color: rgb(241, 245, 184);
+  margin-bottom: 0em;
+}
+.ui.button {
+  border:  1px lightgrey solid;
 }
