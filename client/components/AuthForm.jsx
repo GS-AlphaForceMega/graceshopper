@@ -81,13 +81,7 @@ const AuthForm = props => {
   );
 };
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
+
 const mapLogin = state => {
   return {
     name: 'login',
@@ -110,9 +104,12 @@ const mapDispatch = dispatch => {
     handleSubmit(evt) {
       evt.preventDefault();
       const formName = evt.target.name;
+      const name =  `${formName === 'signup' ?
+        evt.target.firstName.value + evt.target.lastName.value
+        : null}`
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      dispatch(auth(email, password, formName));
+      dispatch(auth(email, password, formName, name));
     },
   };
 };
