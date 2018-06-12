@@ -113,7 +113,7 @@ Some developers may prefer to control deployment rather than rely on automation.
 
 1. Make sure that all your work is fully committed and pushed to your master branch on Github.
 2. If you currently have an existing branch called "deploy", delete it now (`git branch -d deploy`). We're going to use a dummy branch with the name "deploy" (see below), so if you have one lying around, the script below will error
-3. `npm run deploy` - this will cause the following commands to happen in order:
+3. `import { Button, Icon } from 'semantic-ui-react'` - this will cause the following commands to happen in order:
   - `git checkout -b deploy`: checks out a new branch called "deploy". Note that the name "deploy" here isn't magical, but it needs to match the name of the branch we specify when we push to our heroku remote.
   - `webpack -p`: webpack will run in "production mode"
   - `git add -f public/bundle.js public/bundle.js.map`: "force" add the otherwise gitignored build files

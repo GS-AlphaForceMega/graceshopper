@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { fetchProduct } from '../../store/currentProduct';
 import { fillCart } from '../../store/cart'
 
@@ -19,28 +19,41 @@ class SingleProduct extends Component  {
     }
     render(){
         const productId = this.props.match.params.productId;
-        // const product = this.props.products.filter(prod => {
-        //     return Number(prod.id) === Number(productId)
-        // });
+        const createOptions = (optionsNumber) => {
+            let i = 0;
+            let finalOptions = new Array(optionsNumber).fill(1);
+            return finalOptions.map(option => {
+                i += 1;
+                return (<option>{i}</option>);
+            });
+        }
 
         return (
-            <div className="singleProduct">{
-                this.props.product.name ?
-                    (<div className="singleProduct-display">
-                        <div><img src={this.props.product.imageUrl} /></div>
-                        <div>
-                            <h3>{this.props.product.name}</h3>
-                            <p>{this.props.product.description}</p>
-                            <h3>{this.props.product.price}</h3>
-                            <p>{this.props.product.review}</p>
-                        </div>
-                        <button onClick={this.handleClick}>Add To Cart</button>
-                    </div>)
-                : (<h3>Product not found.</h3>)
-            }</div>
+            <div>
+                {
+                    this.props.product.name ?
+                        (<div className="single-product">
+                            <div><img src={this.props.product.imageUrl} /></div>
+                            <div className="single-product-details">
+                                <div className="single-product-details-item"><h3>{this.props.product.name}</h3></div>
+                                <div className="single-product-details-item"><p>{this.props.product.description}</p></div>
+                                <div className="single-product-details-item"><h3>${this.props.product.price}</h3></div>
+                                <div className="single-product-details-item"><h3>{this.props.product.quantity} Items available!</h3></div>
+                                <div><button onClick={this.handleClick}>Add To Cart</button></div>
+                                <div>
+                                    <select>
+                                        {
+                                            createOptions(this.props.product.quantity)
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>)
+                        : (<h3>Product not found.</h3>)
+                }
+            </div >
         )
     }
-
 }
 
 const mapState = state => {
@@ -50,7 +63,7 @@ const mapState = state => {
       order: state.order,
       user: state.user
     }
-  } 
+}
 const mapDispatch = dispatch => {
     return {
         getProduct: (productId) => dispatch(fetchProduct(productId)),
