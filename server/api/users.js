@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  if (req.user && req.user.isAdmin === true || req,user && req.user.id === Number(req.params.id)) {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
     User.findById(req.params.id)
       .then(user => res.json(user))
       .catch(next);
@@ -53,7 +53,7 @@ router.get('/:id/orders/cart', (req, res, next) => {
     })
     .then(order => {
       //if there is more than one unplaced order will return the most recent
-      console.log('###########',order)
+      console.log('###########', order)
       // console.log('#######444444####',orders[0].dataValues.products)
       //send the product and quantity of each to be set on the state, if it exists
       let cart = []
@@ -75,13 +75,13 @@ router.get('/:id/orders/cart', (req, res, next) => {
 
 router.post('/:id/orders', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
-  const { orderId, productId, /* quantity*/ } = req.body;
+  const { orderId, productId /* quantity*/ } = req.body;
   let findOrder = Order.findById(orderId);
   let findProduct = Product.findById(productId);
   return Promise.all([findOrder, findProduct])
   .then(([order, product]) => {
     //REWRITE THE QUANTITY
-    return order.addProduct(product,{ through: { quantity: 1 }})
+    return order.addProduct(product, { through: { quantity: 1 }})
   })
   .then(() => {
     return Order.findById(orderId, {
