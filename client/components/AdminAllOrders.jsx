@@ -3,7 +3,7 @@ import HistoryItem from './HistoryItem.jsx';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-export class OrderHistory extends Component {
+export class AdminAllOrders extends Component {
     constructor() {
         super()
         this.state = {
@@ -12,7 +12,7 @@ export class OrderHistory extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/users/${this.props.user.id}/orders`)
+        axios.get(`/api/users/orders/all`)
             .then(res => res.data)
             .then(orders => this.setState({ orders }))
             .catch(err => console.error(err))
@@ -20,9 +20,10 @@ export class OrderHistory extends Component {
 
     render(props) {
         const { orders } = this.state;
-        console.log(this.props)
+        const isAdmin = !!this.props.user.isAdmin;
         return (
             <div className="orderHistory">{
+                isAdmin ? 
                 orders.length > 0 ?
                 orders.map(order => (
                     <div className="orderHistory-order" key={order.id}>
@@ -43,6 +44,7 @@ export class OrderHistory extends Component {
                 )
             )
             : <h2>You have no orders</h2>
+            : <h2>You do not have permission to view this page</h2>
             }
             </div>
         )
@@ -56,4 +58,4 @@ const mapState = state => {
     };
 }
 
-export default connect(mapState)(OrderHistory);
+export default connect(mapState)(AdminAllOrders);

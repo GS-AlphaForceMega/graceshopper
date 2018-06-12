@@ -9,6 +9,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm.jsx'
 import  UserHome  from './components/UserHome.jsx';
 import OrderHistory from './components/OrderHistory.jsx'
+import AdminAllOrders from './components/AdminAllOrders.jsx';
 
 // const App = () => {
 //   return (
@@ -44,6 +45,7 @@ const App = () => {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/user/:id" component={UserHome} />
         <Route exact path="/order/history" component={OrderHistory} />
+        <Route exact path="/order/all" component={AdminAllOrders} />
         {/* <Route component={AllProducts} /> */}
       </div>
     </div>
