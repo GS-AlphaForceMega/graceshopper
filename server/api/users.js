@@ -52,12 +52,7 @@ router.get('/:id/orders/cart', (req, res, next) => {
     ]
     })
     .then(order => {
-<<<<<<< HEAD
-      //if there is more than one unplaced order will return the most recent
-      console.log('###########', order)
-      // console.log('#######444444####',orders[0].dataValues.products)
-      //send the product and quantity of each to be set on the state, if it exists
-=======
+
       if (!order) {
         return Order.create({
           userId: Number(req.params.id)
@@ -67,7 +62,6 @@ router.get('/:id/orders/cart', (req, res, next) => {
       }
     })
       .then(order => {
->>>>>>> 7405f15db407ea32ac9ad9ac2fc23284b27c3f09
       let cart = []
       if (order.products) {
         cart = order.products.map(product => {
