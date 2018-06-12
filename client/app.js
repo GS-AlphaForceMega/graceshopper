@@ -7,7 +7,7 @@ import Sidebar from './components/Sidebar.jsx'
 import Cart from './components/Cart.jsx'
 import { Route, Redirect } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm.jsx'
-import { UserHome } from './components/UserHome.jsx';
+import  UserHome  from './components/UserHome.jsx';
 import OrderHistory from './components/OrderHistory.jsx'
 
 // const App = () => {
