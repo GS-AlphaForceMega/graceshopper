@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ProductPreview from './ProductPreview.jsx';
-import { fetchProducts } from '../../store';
+import { fetchProducts, fetchCart } from '../../store';
 import Sidebar from '../Sidebar.jsx';
 
 
@@ -13,6 +13,11 @@ class AllProducts extends Component {
 
   componentDidMount() {
     this.props.getProducts();
+    console.log('**&*&%$^&**YGVJj',this.props)
+    if (this.props.user.id) {
+      this.props.getCart(this.props.user.id);
+    }
+
   }
 
   render() {
@@ -98,6 +103,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getProducts: () => dispatch(fetchProducts()),
+    getCart: (userId) => dispatch(fetchCart(userId))
   };
 };
 
