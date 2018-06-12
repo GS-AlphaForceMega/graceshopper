@@ -18,7 +18,7 @@ class Cart extends Component {
                 <div className="all-items">
                     {
                         this.props.cart.map(item => {
-                            return <Item user={this.props.user} key={item.product.id} item={item} order={this.props.order} />
+                            return <Item user={this.props.user} key={item.product.id} itemId={item.product.id} order={this.props.order} />
                         })
                     }
                 </div>
@@ -27,8 +27,10 @@ class Cart extends Component {
 
                 <Checkout
                     name={'The best deals in your city'}
-                    description={'Enter valid email for getttin tickets'}
+                    description={'Enter valid email for getting tickets'}
                     amount={total}
+                    orderId={this.props.order}
+                    userId={this.props.user.id}
                 />
 
             </div>
