@@ -5,7 +5,6 @@ import axios from 'axios'
  */
 const CHANGE_SEARCH = 'CHANGE_SEARCH'
 
-
 /**
  * INITIAL STATE
  */
@@ -16,13 +15,9 @@ const defaultSearch = ''
  */
 export const changeSearch = search => ({type: CHANGE_SEARCH, search})
 
-
-
 /**
  * THUNK CREATORS
  */
-
-
 
 /**
  * REDUCER

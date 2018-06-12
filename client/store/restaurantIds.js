@@ -17,38 +17,9 @@ const defaultRestaurantIds = []
 export const addRestaurantId = (restaurantId) => ({type: ADD_RESTAURANT_ID, restaurantId})
 export const removeRestaurantId = (restaurantId) => ({type: REMOVE_RESTAURANT_ID, restaurantId})
 
-
-
 /**
  * THUNK CREATORS
  */
-// export const fetchRestaurants = () =>
-//   dispatch =>
-//     axios.get('/api/restaurants')
-//       .then(res =>
-//         dispatch(getAllRestaurants(res.data || defaultRestaurants)))
-//       .catch(err => console.log(err))
-
-// export const deleteRestaurant = (restaurantId) =>
-//   dispatch =>
-//     axios.delete(`/api/restaurants/${restaurantId}`)
-//       .then(res =>
-//         dispatch(removeRestaurant(res.data.id)))
-//       .catch(err => console.log(err))
-
-// export const editRestaurant = (restaurant) =>
-//     dispatch =>
-//     axios.put(`/api/restaurants/${restaurant.id}`)
-//       .then(res =>
-//         dispatch(updateRestaurant(res.data)))
-//       .catch(err => console.log(err))
-
-// export const createRestaurant = (restaurant) =>
-//     dispatch =>
-//     axios.post('/api/restaurants', restaurant)
-//       .then(res =>
-//         dispatch(addRestaurant(res.data)))
-//       .catch(err => console.log(err))
 
 /**
  * REDUCER

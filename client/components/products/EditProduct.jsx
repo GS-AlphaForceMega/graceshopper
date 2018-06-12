@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import { editProduct } from '../store/products';
-import { fetchProduct, editCurrentProduct } from '../store/currentProduct';
+import { fetchProduct, editCurrentProduct } from '../../store/currentProduct';
 import axios from 'axios';
-import store from './../store'
+import store from '../../store'
+import history from '../../history'
 
 //should this push to new history of updated product????
 //would probably be better to have a change handler that updates the store state
@@ -14,7 +14,6 @@ export class EditProduct extends Component {
     constructor(props) {
         super(props);
         this.state = store.getState().currentProduct;
-        //this.state = store.getState().product
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -30,12 +29,6 @@ export class EditProduct extends Component {
                 this.setState(product);
             })
             .catch(console.error)
-
-        // this.props.getProduct(+this.props.match.params.productId)
-        // .then( () => {
-        //     this.setState(this.props.product)
-        // })
-
     }
 
     componentWillUnmount() {
@@ -49,8 +42,8 @@ export class EditProduct extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state)
         this.props.submitEdit(this.state);
+        history.push(`/products/${this.state.id}`);
     }
 
     render() {
@@ -58,16 +51,20 @@ export class EditProduct extends Component {
         const { user } = this.props;
         return (
             <div>
-                {console.log(this.state)}
                 {
                     user && user.isAdmin ?
                         product.name ? (
                             <form onSubmit={this.handleSubmit}>
+                                <label>Name</label>
                                 <input name="name" value={this.state.name} onChange={this.handleChange} />
+                                <label>imageUrl</label>
                                 <input name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange} />
-                                <input name="originalPrice" value={this.state.originalPrice} onChange={this.handleChange} />
-                                <input name="salePrice" value={this.state.salePrice} onChange={this.handleChange} />
-                                <input name="review" value={this.state.review} onChange={this.handleChange} />
+                                <label>Price</label>
+                                <input name="price" value={this.state.price} onChange={this.handleChange} />
+                                <label>Description</label>
+                                <input name="description" value={this.state.description} onChange={this.handleChange} />
+                                <label>Quantity</label>
+                                <input name="quantity" value={this.state.quantity} onChange={this.handleChange} />
                                 <button type="submit">Edit Product</button>
                             </form>
                         ) : (<h3>Product not found.</h3>)
@@ -81,12 +78,7 @@ export class EditProduct extends Component {
 
 const mapState = state => {
     return {
-        //   isLoggedIn: !!state.user.id,
-        //change to state.products
-        //   products: products,
-        //change to state.restaurantIds
-        //   restaurantIds: state.restaurantIds
-        product: state.currentProduct
+        user: state.user,
     }
 }
 
@@ -97,4 +89,4 @@ const mapDispatch = dispatch => {
     }
 }
 
-export default connect(null, mapDispatch)(EditProduct)
+export default connect(mapState, mapDispatch)(EditProduct)
