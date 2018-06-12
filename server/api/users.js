@@ -52,10 +52,22 @@ router.get('/:id/orders/cart', (req, res, next) => {
     ]
     })
     .then(order => {
+<<<<<<< HEAD
       //if there is more than one unplaced order will return the most recent
       console.log('###########', order)
       // console.log('#######444444####',orders[0].dataValues.products)
       //send the product and quantity of each to be set on the state, if it exists
+=======
+      if (!order) {
+        return Order.create({
+          userId: Number(req.params.id)
+        })
+      } else {
+        return order
+      }
+    })
+      .then(order => {
+>>>>>>> 7405f15db407ea32ac9ad9ac2fc23284b27c3f09
       let cart = []
       if (order.products) {
         cart = order.products.map(product => {
@@ -159,6 +171,26 @@ router.put('/:id/orders/decrease', (req, res, next) => {
         })
         .then(updatedSubOrder => res.send(updatedSubOrder))
     .catch(next);
+    }
+    else {
+      res.statusCode(402).send('You are not authorized to view this user\'s order history.');
+    }
+});
+
+router.put('/:id/orders/:orderId', (req, res, next) => {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
+      const { id, orderId } = req.params;
+      return Order.findOne({
+        where: {
+          id: orderId
+        }
+      })
+      .then(order => {
+        order.update({placed: true})
+      })
+      .then(() => {
+        res.status(201).send(`Order#${orderId} has been placed`)
+      })
     }
     else {
       res.statusCode(402).send('You are not authorized to view this user\'s order history.');
