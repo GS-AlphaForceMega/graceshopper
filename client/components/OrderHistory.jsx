@@ -1,33 +1,46 @@
 import React, { Component } from 'react';
-import Item from './Item';
+import HistoryItem from './HistoryItem.jsx';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 class OrderHistory extends Component {
-
-    super() {
+    constructor() {
+        super()
         this.state = {
             orders: []
         };
     }
 
     componentDidMount() {
-        axios.get(`/api/users/${this.props.userId}/orders`)
+        axios.get(`/api/users/${this.props.user.id}/orders`)
             .then(res => res.data)
             .then(orders => this.setState({ orders }))
             .catch(err => console.error(err))
     }
 
     render(props) {
-        const { orders } = this.props.orders;
+        const { orders } = this.state;
         return (
             <div className="orderHistory">{
+                orders.length > 0 ?
                 orders.map(order => (
-                    <div className="orderHistory-order" key={order.id}>{
-                        order.items.map(item => (<Item item={item} key={item.id} placed={true} />))
+                    <div className="orderHistory-order" key={order.id}>
+                    <h2>Order#{order.id}</h2>
+                    <div>{
+                        order.products.map(item => (<HistoryItem item={item} key={item.id} />))
                     }</div>
-                ))
-            }</div>
+                    <h1>Order Total: ${
+                        order.products.reduce((sum, product) => {
+                            let number = Number(sum) + (Number(product.price) * Number(product.orderProduct.quantity))
+                            return Number.parseFloat(number).toFixed(2)
+                        }, 0)
+                    }</h1>
+                    </div>
+                )
+            )
+            : <h2>You have no orders</h2>
+            }
+            </div>
         )
     }
 
@@ -35,7 +48,7 @@ class OrderHistory extends Component {
 
 const mapState = state => {
     return {
-        orders: state.orders
+        user: state.user
     };
 }
 
