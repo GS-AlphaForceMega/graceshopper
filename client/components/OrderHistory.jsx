@@ -3,7 +3,7 @@ import HistoryItem from './HistoryItem.jsx';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-class OrderHistory extends Component {
+export class OrderHistory extends Component {
     constructor() {
         super()
         this.state = {

@@ -49,6 +49,7 @@ class AllProducts extends Component {
     }
     return (
         <div className="catalog">
+        {console.log('&&&&&&&&&&',this.props.user)}
             <Sidebar />
             <div>
               <Link to='/order/history'>Order History</Link>
