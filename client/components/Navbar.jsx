@@ -33,7 +33,7 @@ const Navbar = ({ handleClick, isLoggedIn, user, cart }) => (
         </Link>
         {isLoggedIn ? (
           <div className="header-right">
-            <Link to={`/user/:${user.id}`}>
+            <Link to={`/user/${user.id}`}>
               <Menu.Item>
                 <Button primary>My Account</Button>
               </Menu.Item>
