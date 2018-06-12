@@ -53,10 +53,14 @@ router.get('/:id/orders/cart', (req, res, next) => {
     })
     .then(order => {
       if (!order) {
-        Order.create({
-          userId: req.params.id
+        return Order.create({
+          userId: Number(req.params.id)
         })
+      } else {
+        return order
       }
+    })
+      .then(order => {
       let cart = []
       if (order.products) {
         cart = order.products.map(product => {
