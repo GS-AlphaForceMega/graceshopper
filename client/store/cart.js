@@ -28,13 +28,14 @@ export const removeFromCart = (productId) => ({type: REMOVE_FROM_CART, productId
  * THUNK CREATORS
  */
 export const fetchCart = (userId) => 
-    dispatch =>
-        axios.get(`/api/users/${userId}/orders/cart`)
-        .then(order => {
-            dispatch(setCart(order.data.cart || []))
-            dispatch(setOrder(order.data.orderId))
-        })
-        .catch(err => console.error(err))
+    dispatch => {
+            axios.get(`/api/users/${userId}/orders/cart`)
+            .then(order => {
+                dispatch(setCart(order.data.cart || []))
+                dispatch(setOrder(order.data.orderId))
+            })
+            .catch(err => console.error(err))
+    }
 
 export const fillCart = (userId, orderId, productId, quantity) =>
     dispatch => 
