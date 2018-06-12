@@ -1,34 +1,39 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Item from './Item.jsx';
 import Checkout from './Checkout.jsx';
 import { increaseCart, decreaseCart } from '../store/cart'
 
 // increaseCart={this.props.increaseTheCart} decreaseCart={this.props.decreaseTheCart}
 
-class Cart extends Component  {
+class Cart extends Component {
 
-    render(){
+    render() {
+        const total = this.props.cart.reduce((sum, item) => {
+            let number = Number(sum) + (Number(item.product.price) * Number(item.quantity))
+            return Number.parseFloat(number).toFixed(2)
+        }, 0)
         return (
             <div className="cart">
                 <div className="all-items">
                     {
+                        this.props.cart.length > 0 ?
                         this.props.cart.map(item => {
-                            return <Item user={this.props.user} key={item.product.id} item={item}  order={this.props.order} />
+                            return <Item user={this.props.user} key={item.product.id} itemId={item.product.id} order={this.props.order} />
                         })
+                        : <h2>Your cart is currently empty</h2>
                     }
                 </div>
-                <h1>Cart Total: ${this.props.cart.reduce((sum, item) => {
-                    let number = sum + (item.product.price * item.quantity)
-                    return Number.parseFloat(number).toFixed(2)
-                }, 0)}</h1>
+                <h1>Cart Total: ${total}</h1>
 
 
-<Checkout
-  name={'The best deals in your city'}
-  description={'Enter valid email for getttin tickets'}
-  amount={1}
-/>
+                <Checkout
+                    name={'The best deals in your city'}
+                    description={'Enter valid email for getting tickets'}
+                    amount={total}
+                    orderId={this.props.order}
+                    userId={this.props.user.id}
+                />
 
             </div>
         )
@@ -38,12 +43,12 @@ class Cart extends Component  {
 
 const mapState = state => {
     return {
-      isLoggedIn: !!state.user.id,
-      cart: state.cart,
-      user: state.user,
-      order: state.order
+        isLoggedIn: !!state.user.id,
+        cart: state.cart,
+        user: state.user,
+        order: state.order
     }
-  }
+}
 // const mapDispatch = dispatch => {
 //     return {
 //         increaseTheCart: (userId, orderId, productId) => {
@@ -53,4 +58,4 @@ const mapState = state => {
 //     }
 // }
 
-  export default connect(mapState)(Cart)
+export default connect(mapState)(Cart)
