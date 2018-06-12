@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchProduct } from '../../store/currentProduct';
 import { fillCart } from '../../store/cart'
+import {Link} from 'react-router-dom'
 
 
 class SingleProduct extends Component {
@@ -47,6 +48,13 @@ class SingleProduct extends Component {
                                         }
                                     </select>
                                 </div>
+                                {
+                                    this.props.user.isAdmin ? (
+                                        <Link to={`/edit/products/${this.props.product.id}`} user={this.props.user}>
+                                            <button>Edit</button>
+                                        </Link>
+                                    ) : null
+                                }
                             </div>
                         </div>)
                         : (<h3>Product not found.</h3>)

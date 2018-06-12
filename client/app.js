@@ -33,6 +33,7 @@ const App = () => {
         {/*        <Sidebar /> */}
         <Route exact path="/" component={AllProducts} />
         <Route exact path="/products" component={AllProducts} />
+        <Route exact path="/home" component={AllProducts} />
         <Route exact path="/edit/products/:productId" component={EditProduct} />
         <Route exact path="/add/product" component={AddProduct} />
         <Route exact path="/products/:productId" component={SingleProduct} />

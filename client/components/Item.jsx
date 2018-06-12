@@ -16,9 +16,8 @@ const Item = (props) =>  {
                 </div>
                 <div className="item_details">
                     <div><h2>{product.name}</h2></div>
-                    <div><h2>Original: ${product.originalPrice}</h2></div>
-                    <div><h2>You Pay: ${product.salePrice}</h2></div>
-                    <div><h2>{product.review}</h2></div>
+                    <div><h2>Final Price: ${product.price}</h2></div>
+                    <div><h3>{product.description}</h3></div>
                 </div>
                 </Link>
                 <h2>{props.item.quantity}</h2>
