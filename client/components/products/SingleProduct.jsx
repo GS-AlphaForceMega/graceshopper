@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchProduct } from '../../store/currentProduct';
 import { fillCart } from '../../store/cart'
 import {Link} from 'react-router-dom'
+import history from '../../history'
 
 
 class SingleProduct extends Component {
@@ -17,6 +18,7 @@ class SingleProduct extends Component {
 
     handleClick(evt) {
         this.props.addProduct(this.props.user.id, this.props.order, this.props.product.id);
+        history.push('/cart')
     }
     render() {
         const productId = this.props.match.params.productId;

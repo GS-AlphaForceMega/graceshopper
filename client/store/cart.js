@@ -29,7 +29,7 @@ export const removeFromCart = (productId) => ({type: REMOVE_FROM_CART, productId
  */
 export const fetchCart = (userId) => 
     dispatch =>
-        axios.get(`/api/users/${userId}/orders/latest`)
+        axios.get(`/api/users/${userId}/orders/cart`)
         .then(order => {
             dispatch(setCart(order.data.cart || []))
             dispatch(setOrder(order.data.orderId))
@@ -74,26 +74,26 @@ export default function (state = defaultCart, action) {
     case ADD_TO_CART:
         return [...state, {product: action.product, quantity: action.quantity}]
     case INCREASE_IN_CART:
-        return state.map(something => {
-            if (something.product.id === action.productId) {
-              something.quantity++;
+        return state.map(subOrder => {
+            if (subOrder.product.id === action.productId) {
+              subOrder.quantity++;
             }
-            return something;
+            return subOrder;
         })
     case DECREASE_IN_CART:
-      return state.map(something => {
-          if (something.product.id === action.productId) {
-            if (something.quantity > 1) {
-                something.quantity--;
+      return state.map(subOrder => {
+          if (subOrder.product.id === action.productId) {
+            if (subOrder.quantity > 1) {
+                subOrder.quantity--;
             } else {
                 return 
             }
           }
-          return something
+          return subOrder
       })
     case REMOVE_FROM_CART:
-        return state.filter(something => {
-            return something.product.id !== action.productId;
+        return state.filter(subOrder => {
+            return subOrder.product.id !== action.productId;
         })
     default:
       return state
