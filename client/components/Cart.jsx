@@ -27,8 +27,10 @@ class Cart extends Component {
 
                 <Checkout
                     name={'The best deals in your city'}
-                    description={'Enter valid email for getttin tickets'}
+                    description={'Enter valid email for getting tickets'}
                     amount={total}
+                    orderId={this.props.order}
+                    userId={this.props.user.id}
                 />
 
             </div>
