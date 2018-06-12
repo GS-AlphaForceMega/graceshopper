@@ -17,9 +17,11 @@ class Cart extends Component {
             <div className="cart">
                 <div className="all-items">
                     {
+                        this.props.cart.length > 0 ?
                         this.props.cart.map(item => {
                             return <Item user={this.props.user} key={item.product.id} itemId={item.product.id} order={this.props.order} />
                         })
+                        : <h2>Your cart is currently empty</h2>
                     }
                 </div>
                 <h1>Cart Total: ${total}</h1>

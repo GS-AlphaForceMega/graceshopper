@@ -9,15 +9,23 @@ import history from '../../history'
 class SingleProduct extends Component {
     constructor(props) {
         super(props);
+        this.state ={
+            select: 1
+        }
         this.handleClick = this.handleClick.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
     }
 
     componentDidMount() {
         this.props.getProduct(Number(this.props.match.params.productId))
     }
 
+    handleSelect(evt) {
+        this.setState({select: Number(evt.target.value)})
+    }
+
     handleClick(evt) {
-        this.props.addProduct(this.props.user.id, this.props.order, this.props.product.id);
+        this.props.addProduct(this.props.user.id, this.props.order, this.props.product.id, this.state.select);
         history.push('/cart')
     }
     render() {
@@ -27,12 +35,13 @@ class SingleProduct extends Component {
             let finalOptions = new Array(optionsNumber).fill(1);
             return finalOptions.map(option => {
                 i += 1;
-                return (<option key={i} >{i}</option>);
+                return (<option key={i} value={i}>{i}</option>);
             });
         }
 
         return (
             <div>
+                {console.log(this.state)}
                 {
                     this.props.product.name ?
                         (<div className="single-product">
@@ -44,7 +53,7 @@ class SingleProduct extends Component {
                                 <div className="single-product-details-item"><h3>{this.props.product.quantity} Items available!</h3></div>
                                 <div><button onClick={this.handleClick}>Add To Cart</button></div>
                                 <div>
-                                    <select>
+                                    <select onChange={this.handleSelect}>
                                         {
                                             createOptions(this.props.product.quantity)
                                         }
@@ -77,7 +86,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
         getProduct: (productId) => dispatch(fetchProduct(productId)),
-        addProduct: (userId, orderId, productId) => dispatch(fillCart(userId, orderId, productId))
+        addProduct: (userId, orderId, productId, quantity) => dispatch(fillCart(userId, orderId, productId, quantity))
     }
 }
 
