@@ -24,23 +24,26 @@ export const increaseInCart = (productId) => ({type: INCREASE_IN_CART, productId
 export const decreaseInCart = (productId) => ({type: DECREASE_IN_CART, productId})
 export const removeFromCart = (productId) => ({type: REMOVE_FROM_CART, productId})
 
-
 /**
  * THUNK CREATORS
  */
 export const fetchCart = (userId) => 
     dispatch =>
-        axios.get(`/api/users/${userId}/orders/latest`)
+        axios.get(`/api/users/${userId}/orders/cart`)
         .then(order => {
             dispatch(setCart(order.data.cart || []))
             dispatch(setOrder(order.data.orderId))
         })
         .catch(err => console.error(err))
-        
+
 export const fillCart = (userId, orderId, productId, quantity) =>
     dispatch => 
-        axios.post(`/api/users/${userId}/orders`, {orderId, productId})
-        .then(order => dispatch(addToCart(order, quantity)))
+        axios.post(`/api/users/${userId}/orders`, {orderId, productId, quantity})
+    .then(order => {
+        dispatch(setCart(order.data.cart))
+        dispatch(setOrder(order.data.orderId))
+    })
+
         .catch(err => console.error(err))
 
 export const increaseCart = (userId, orderId, productId) =>
@@ -57,8 +60,8 @@ export const decreaseCart = (userId, orderId, productId) =>
 
 export const removeCart = (userId, orderId, productId) =>
     dispatch => 
-        axios.delete(`/api/users/${userId}/orders`, {orderId})
-        .then(order => dispatch(removeFromCart(order.id)))
+        axios.delete(`/api/users/${userId}/orders/${orderId}/${productId}`)
+        .then(order => dispatch(removeFromCart(productId)))
         .catch(err => console.error(err))
 
 /**
@@ -71,27 +74,26 @@ export default function (state = defaultCart, action) {
     case ADD_TO_CART:
         return [...state, {product: action.product, quantity: action.quantity}]
     case INCREASE_IN_CART:
-        console.log('increasingggggg', action)
-        return state.map(something => {
-            if (something.product.id === action.productId) {
-              something.quantity++;
+        return state.map(subOrder => {
+            if (subOrder.product.id === action.productId) {
+              subOrder.quantity++;
             }
-            return something;
+            return subOrder;
         })
     case DECREASE_IN_CART:
-      return state.map(something => {
-          if (something.product.id === action.productId) {
-            if (something.quantity > 1) {
-                something.quantity--;
+      return state.map(subOrder => {
+          if (subOrder.product.id === action.productId) {
+            if (subOrder.quantity > 1) {
+                subOrder.quantity--;
             } else {
                 return 
             }
           }
-          return something
+          return subOrder
       })
     case REMOVE_FROM_CART:
-        return state.filter(something => {
-            return something.product.id !== action.productId;
+        return state.filter(subOrder => {
+            return subOrder.product.id !== action.productId;
         })
     default:
       return state

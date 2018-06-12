@@ -236,3 +236,8 @@ h1:first-child{
   max-height: 100px;
   width: auto;
 } */
+
+.orderHistory {
+  display: flex;
+  margin: 0 auto:
+}

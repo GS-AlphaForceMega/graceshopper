@@ -1,17 +1,17 @@
-const path = require('path')
-const express = require('express')
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
-const compression = require('compression')
-const session = require('express-session')
-const passport = require('passport')
-const SequelizeStore = require('connect-session-sequelize')(session.Store)
-const db = require('./db')
-const sessionStore = new SequelizeStore({db})
-const PORT = process.env.PORT || 8080
-const app = express()
-const socketio = require('socket.io')
-
+const path = require('path');
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const session = require('express-session');
+const passport = require('passport');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const db = require('./db');
+const sessionStore = new SequelizeStore({db});
+const PORT = process.env.PORT || 8080;
+const app = express();
+const socketio = require('socket.io');
+const chalk = require('chalk');
 
 
 module.exports = app
@@ -50,7 +50,11 @@ const createApp = () => {
     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
     store: sessionStore,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      cart: [],
+      maxAge: 86400000
+    }
   }))
   app.use(passport.initialize())
   app.use(passport.session())
@@ -73,9 +77,21 @@ const createApp = () => {
     }
   })
 
+  let sess;
+
+  app.get('/', (req, res, next) => {
+    sess = req.session;
+  })
+
+  // sess.cookie.cart = [];
+
+  app.get('/session', (req, res, next) => {
+    res.json(req.session);
+  })
+
   // sends index.html
   app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'));
   })
 
   // error handling endware

@@ -11,8 +11,15 @@ const CURRENCY = 'USD';
 const fromDollarToCent = amount => amount * 100;
 
 const successPayment = data => {
-  alert('Payment Successful');
+  alert(`Payment Successful!`);
 };
+const placeOrder = data => {
+   axios.put(`/${props.userId}/orders/${props.orderId}`)
+  .then((message => {
+    console.log(message)
+  }))
+  .catch(console.error)
+}
 
 const errorPayment = data => {
   alert('Payment Error');
@@ -27,6 +34,7 @@ const onToken = (amount, description) => token =>
       amount: fromDollarToCent(amount),
     })
     .then(successPayment)
+    .then(placeOrder)
     .catch(errorPayment);
 
 const Checkout = ({ name, description, amount }) => (

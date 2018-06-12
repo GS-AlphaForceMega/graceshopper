@@ -5,49 +5,6 @@ import ProductPreview from './ProductPreview.jsx';
 import { fetchProducts } from '../../store';
 import Sidebar from '../Sidebar.jsx';
 
-const products = [
-  {
-    id: 1,
-    name: 'Rice',
-    imageUrl:
-      'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg',
-    originalPrice: 100,
-    salePrice: 50,
-    review: '****',
-    restaurant: { id: 1 },
-  },
-  {
-    id: 2,
-    name: 'Rice',
-    imageUrl:
-      'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg',
-    originalPrice: 110,
-    salePrice: 50,
-    review: '****',
-    restaurant: { id: 1 },
-  },
-  {
-    id: 3,
-    name: 'Rice',
-    imageUrl:
-      'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg',
-    originalPrice: 105,
-    salePrice: 50,
-    review: '****',
-    restaurant: { id: 2 },
-  },
-  {
-    id: 4,
-    name: 'Rice',
-    imageUrl:
-      'https://fgarciafoods.com/wp-content/uploads/2015/08/products-33.jpg',
-    originalPrice: 120,
-    salePrice: 50,
-    review: '****',
-    restaurant: { id: 2 },
-  },
-];
-const restaurantIds = [1, 2];
 
 class AllProducts extends Component {
   constructor() {
@@ -87,9 +44,10 @@ class AllProducts extends Component {
     }
     return (
         <div className="catalog">
+        {console.log('&&&&&&&&&&',this.props.user)}
             <Sidebar />
             <div>
-            {console.log('the user', this.props.user)}
+              <Link to='/order/history'>Order History</Link>
                 <div className="all-products">
                     {//check if there are any products if none go to last : for a message otherwise you will display products
                     this.props.products.length >= 1 ? (

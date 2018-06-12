@@ -21,7 +21,6 @@ const removeRestaurant = (restaurantId) => ({type: REMOVE_RESTAURANT, restaurant
 const addRestaurant = (restaurant) => ({type: ADD_RESTAURANT, restaurant})
 const updateRestaurant = (restaurant) => ({type: UPDATE_RESTAURANT, restaurant})
 
-
 /**
  * THUNK CREATORS
  */

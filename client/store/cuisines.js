@@ -17,12 +17,9 @@ const defaultCuisines = []
 export const addCuisine = (cuisine) => ({type: ADD_CUISINE, cuisine})
 export const removeCuisine = (cuisine) => ({type: REMOVE_CUISINE, cuisine})
 
-
 /**
  * THUNK CREATORS
  */
-
-
 
 /**
  * REDUCER

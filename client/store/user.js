@@ -28,7 +28,15 @@ export const me = () =>
       .then(res => {
         if (res.data) dispatch(getUser(res.data || defaultUser))
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+
+export const fetchUser = (userId) =>
+  dispatch =>
+    axios.get(`/users/${userId}`)
+      .then(res => {
+        dispatch(getUser(res.data));
+      })
+      .catch(err => console.error(err));
 
 export const auth = (email, password, method, name) =>
   dispatch =>
