@@ -74,28 +74,47 @@ router.get('/:id/orders/latest', (req, res, next) => {
 
 router.post('/:id/orders', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
-  const { orderId, productId } = req.body;
-  Order.findById(orderId)
-  .then(order => {
-    Product.findById(productId)
-    .then(product => {
-      return order.addProduct(product,{ through: { OrderProduct }})
-    })
-    .then(subOrder => {
-      console.log('suborder', subOrder[0][0])
-      res.send(subOrder[0][0])
+  const { orderId, productId, /* quantity*/ } = req.body;
+  let findOrder = Order.findById(orderId);
+  let findProduct = Product.findById(productId);
+  return Promise.all([findOrder, findProduct])
+  .then(([order, product]) => {
+    //REWRITE THE QUANTITY
+    return order.addProduct(product,{ through: { quantity: 1 }})
+  })
+  .then(() => {
+    return Order.findById(orderId, {
+      include: [{model: Product}]
     })
   })
-  // OrderProduct.create({
-  //   orderId,
-  //   productId,
-  //   quantity: 1
-  // })
-  // .then(subOrder => {
-  //   console.log('suborder', subOrder)
-  //   res.send(subOrder)
-  // })
+  .then(updatedOrder => {
+    let cart = []
+    if (updatedOrder.products) {
+      cart = updatedOrder.products.map(product => {
+        return {product, quantity: product.orderProduct.quantity}
+      });
     }
+    res.send({cart, orderId: updatedOrder.id});
+  })
+  .catch(next)
+    }
+  else throw new Error('You are not authorized to view this user\'s order history.');
+});
+
+router.delete('/:id/orders/:orderId/:productId', (req, res, next) => {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
+    const { orderId, productId } = req.params;
+    return OrderProduct.destroy({
+      where: {
+        orderId: orderId,
+        productId: productId
+      }
+    })
+    .then(deleted => {
+      res.status(204).send('succesfully deleted')
+    })
+    .catch(next)
+  }
   else throw new Error('You are not authorized to view this user\'s order history.');
 });
 
