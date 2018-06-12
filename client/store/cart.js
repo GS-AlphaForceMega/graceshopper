@@ -39,7 +39,10 @@ export const fetchCart = (userId) =>
 export const fillCart = (userId, orderId, productId /*,quantity*/) =>
     dispatch => 
         axios.post(`/api/users/${userId}/orders`, {orderId, productId, /*, quantity*/})
-    .then(order => dispatch(addToCart(order.data, 1 /*quantity*/)))
+    .then(order => {
+        dispatch(setCart(order.data.cart))
+        dispatch(setOrder(order.data.orderId))
+    })
 
         .catch(err => console.error(err))
 
@@ -57,8 +60,8 @@ export const decreaseCart = (userId, orderId, productId) =>
 
 export const removeCart = (userId, orderId, productId) =>
     dispatch => 
-        axios.delete(`/api/users/${userId}/orders`, {orderId})
-        .then(order => dispatch(removeFromCart(order.id)))
+        axios.delete(`/api/users/${userId}/orders/${orderId}/${productId}`)
+        .then(order => dispatch(removeFromCart(productId)))
         .catch(err => console.error(err))
 
 /**

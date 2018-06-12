@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { increaseCart, decreaseCart } from '../store/cart'
+import { increaseCart, decreaseCart, removeCart } from '../store/cart'
 
 const Item = (props) =>  {
         const product = props.item.product;
@@ -22,8 +22,9 @@ const Item = (props) =>  {
                 </div>
                 </Link>
                 <h2>{props.item.quantity}</h2>
-                <button onClick={() => props.increaseTheCart(userId, orderId, itemId)}>Add</button>
-                <button onClick={() => props.decreaseTheCart(userId, orderId, itemId)}>Remove</button>
+                <button onClick={() => props.increaseTheCart(userId, orderId, itemId)}>+</button>
+                <button onClick={() => props.decreaseTheCart(userId, orderId, itemId)}>-</button>
+                <button onClick={() => props.removeFromCart(userId, orderId, itemId)} >Remove</button>
             </div>
         )
 }
@@ -41,7 +42,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
         increaseTheCart: (userId, orderId, productId) => dispatch(increaseCart(userId, orderId, productId)),
-        decreaseTheCart: (userId,orderId, productId) => dispatch(decreaseCart(userId, orderId, productId))
+        decreaseTheCart: (userId,orderId, productId) => dispatch(decreaseCart(userId, orderId, productId)),
+        removeFromCart: (userId, orderId, productId) => dispatch(removeCart(userId, orderId, productId))
     }
 }
 
