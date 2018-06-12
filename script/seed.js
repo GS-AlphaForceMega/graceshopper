@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Restaurant, Product} = require('../server/db/models')
+const {User, Restaurant, Product, Order} = require('../server/db/models')
 const {restaurants, products} = require('./seed_resAndPro')
 
 /**
@@ -24,7 +24,7 @@ async function seed () {
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123', name: 'cody'}),
+    User.create({email: 'cody@email.com', password: '123', name: 'cody', isAdmin: true}),
     User.create({email: 'murphy@email.com', password: '123', name: 'murphy'}),
   ])
 
@@ -32,6 +32,52 @@ async function seed () {
     Restaurant.create(restaurant)));
   await Promise.all(products.map(product =>
     Product.create(product)));
+  await Promise.all([
+    Order.create({userId: 1, placed: true}),
+    Product.findById(1),
+    Product.findById(5),
+    Product.findById(8),
+  ])
+  .then(([order, product1, product2, product3]) => {
+    order.addProduct(product1, {quantity: 3}),
+    order.addProduct(product2, {quantity: 1}),
+    order.addProduct(product3, {quantity: 5})
+  })
+  await Promise.all([
+    Order.create({userId: 1, placed: true}),
+    Product.findById(2),
+    Product.findById(3),
+    Product.findById(4),
+  ])
+  .then(([order, product1, product2, product3]) => {
+    order.addProduct(product1, {quantity: 1}),
+    order.addProduct(product2, {quantity: 6}),
+    order.addProduct(product3, {quantity: 2})
+  })
+  await Promise.all([
+    Order.create({userId: 2, placed: true}),
+    Product.findById(5),
+    Product.findById(6),
+    Product.findById(9),
+  ])
+  .then(([order, product1, product2, product3]) => {
+    order.addProduct(product1, {quantity: 2}),
+    order.addProduct(product2, {quantity: 1}),
+    order.addProduct(product3, {quantity: 1})
+  })
+  await Promise.all([
+    Order.create({userId: 2, placed: true}),
+    Product.findById(10),
+    Product.findById(11),
+    Product.findById(13),
+  ])
+  .then(([order, product1, product2, product3]) => {
+    order.addProduct(product1, {quantity: 2}),
+    order.addProduct(product2, {quantity: 1}),
+    order.addProduct(product3, {quantity: 4})
+  })
+
+
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)

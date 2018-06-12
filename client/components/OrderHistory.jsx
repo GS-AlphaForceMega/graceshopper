@@ -26,6 +26,9 @@ export class OrderHistory extends Component {
                 orders.map(order => (
                     <div className="orderHistory-order" key={order.id}>
                     <h2>Order#{order.id}</h2>
+                    <h2>
+                        Order Placed: {order.updatedAt.split('T')[0]} {order.updatedAt.split('T')[1].slice(0, 5) }
+                    </h2>
                     <div>{
                         order.products.map(item => (<HistoryItem item={item} key={item.id} />))
                     }</div>
