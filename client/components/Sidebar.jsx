@@ -50,11 +50,6 @@ class Sidebar extends Component  {
             }
             return a
         }, [])
-        // this.props.cuisines.forEach(cuisine => {
-        //     if (!cuisines.includes(cuisine)) {
-        //         cuisines.push(cuisine)
-        //     }
-        // })
         return (
             <div className="sidebar">
                 <div className="search-bar">
