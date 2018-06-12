@@ -4,8 +4,8 @@ import history from '../history';
 import StripeCheckout from 'react-stripe-checkout';
 
 import PAYMENT_SERVER_URL from './stripeConstants/server';
-import { STRIPE_PUBLISHABLE } from '../../secrets';
-
+import process from '../../secrets'
+const { STRIPE_PUBLISHABLE } = process.env.stripe;
 const CURRENCY = 'USD';
 
 const fromDollarToCent = amount => amount * 100;
@@ -17,7 +17,7 @@ const successPayment = data => {
 
 const errorPayment = data => {
   alert('Payment Error');
-  
+
 };
 
 const onToken = (amount, description, orderId, userId) => token =>
