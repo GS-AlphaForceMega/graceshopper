@@ -90,11 +90,7 @@ router.post('/:id/orders', (req, res, next) => {
   let findProduct = Product.findById(productId);
   return Promise.all([findOrder, findProduct])
   .then(([order, product]) => {
-<<<<<<< HEAD
-    return order.addProduct(product,{ through: { quantity: quantity }})
-=======
     return order.addProduct(product, { through: { quantity: quantity }})
->>>>>>> master
   })
   .then(() => {
     return Order.findById(orderId, {
