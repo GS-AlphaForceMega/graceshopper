@@ -22,11 +22,12 @@ const Item = (props) =>  {
                     <div><h3>{item.product.description}</h3></div>
                 </div>
                 </Link>
-                <h2>{item.quantity}</h2>
-                <button onClick={() => props.increaseTheCart(userId, orderId, itemId)}>+</button>
-                <button onClick={() => props.decreaseTheCart(userId, orderId, itemId)}>-</button>
-                <button onClick={() => props.removeFromCart(userId, orderId, itemId)} >Remove</button>
-            </div>
+                <h2>{props.item.quantity}</h2>
+                {!this.props.placed ? (<div className="item-buttons">
+                    <button onClick={() => props.increaseTheCart(userId, orderId, itemId)}>+</button>
+                    <button onClick={() => props.decreaseTheCart(userId, orderId, itemId)}>-</button>
+                    <button onClick={() => props.removeFromCart(userId, orderId, itemId)} >Remove</button>
+                </div>) : null}
         )
 }
 
