@@ -28,7 +28,8 @@ router.get('/:id/orders', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
     Order.findAll({
       where: {
-        userId: req.params.id
+        userId: req.params.id,
+        placed: true
       },
       include: [{
         model: Product
@@ -88,7 +89,6 @@ router.post('/:id/orders', (req, res, next) => {
   let findProduct = Product.findById(productId);
   return Promise.all([findOrder, findProduct])
   .then(([order, product]) => {
-    //REWRITE THE QUANTITY
     return order.addProduct(product,{ through: { quantity: quantity }})
   })
   .then(() => {

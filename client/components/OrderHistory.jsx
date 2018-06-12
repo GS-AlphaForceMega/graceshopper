@@ -22,12 +22,25 @@ class OrderHistory extends Component {
         const { orders } = this.state;
         return (
             <div className="orderHistory">{
+                orders.length > 0 ?
                 orders.map(order => (
-                    <div className="orderHistory-order" key={order.id}>{
+                    <div className="orderHistory-order" key={order.id}>
+                    <h2>Order#{order.id}</h2>
+                    <div>{
                         order.products.map(item => (<HistoryItem item={item} key={item.id} />))
                     }</div>
-                ))
-            }</div>
+                    <h1>Order Total: ${
+                        order.products.reduce((sum, product) => {
+                            let number = Number(sum) + (Number(product.price) * Number(product.orderProduct.quantity))
+                            return Number.parseFloat(number).toFixed(2)
+                        }, 0)
+                    }</h1>
+                    </div>
+                )
+            )
+            : <h2>You have no orders</h2>
+            }
+            </div>
         )
     }
 
