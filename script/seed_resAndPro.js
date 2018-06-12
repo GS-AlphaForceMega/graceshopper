@@ -31,7 +31,7 @@ const restaurants = [
         rating: 4
     },
      {   name: 'WanTon',
-        cuisine: 'chinesse',
+        cuisine: 'chinese',
         imageUrl: 'https://img1.10bestmedia.com/Images/Photos/198827/322885-340328829322875-635825131-o_54_990x660_201404231603.jpg',
         streetAddress: '212 E 125th St.',
         town: 'Harlem',
