@@ -23,7 +23,7 @@ const descriptions = [
 
 const restaurants = [
     {   name: 'TacoBell',
-        cuisine: 'mexican',
+        cuisine: 'Mexican',
         imageUrl: 'https://yummy.co.ke/wp-content/uploads/2014/09/Tacos-Mexican-Food.jpg',
         streetAddress: '4322 W 25th St.',
         town: 'Manhattan',
@@ -31,7 +31,7 @@ const restaurants = [
         rating: 4
     },
      {   name: 'WanTon',
-        cuisine: 'chinesse',
+        cuisine: 'Chinese',
         imageUrl: 'https://img1.10bestmedia.com/Images/Photos/198827/322885-340328829322875-635825131-o_54_990x660_201404231603.jpg',
         streetAddress: '212 E 125th St.',
         town: 'Harlem',
@@ -39,7 +39,7 @@ const restaurants = [
         rating: 3.5
     },
      {   name: 'Giussepe',
-        cuisine: 'italian',
+        cuisine: 'Italian',
         imageUrl: 'http://s3.amazonaws.com/etntmedia/media/images/ext/628852948/spaghettiandmeatballs.jpg',
         streetAddress: '980 W 200th St',
         town: 'Inwood',
@@ -47,7 +47,7 @@ const restaurants = [
         rating: 4.5
     },
      {   name: 'Cachapas',
-        cuisine: 'venezuelan',
+        cuisine: 'Venezuelan',
         imageUrl: 'http://www.thepetitgourmet.com/wp-content/uploads/2015/06/DSCN8841.jpg',
         streetAddress: '90 Dyckman St',
         town: 'Inwood',
@@ -57,7 +57,7 @@ const restaurants = [
 ];
 
 // const cuisines = [
-//     'chinesse', 'mexican', 'italian', 'venezuelan'
+//     'Chinese', 'Mexican', 'Italian', 'Venezuelan'
 // ];
 
 const restaurantId = () => Math.round(Math.random() * (restaurants.length - 1));
