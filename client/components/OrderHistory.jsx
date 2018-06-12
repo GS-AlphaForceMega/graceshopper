@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
-import Item from './Item';
+import HistoryItem from './HistoryItem.jsx';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 class OrderHistory extends Component {
-
-    super() {
+    constructor() {
+        super()
         this.state = {
             orders: []
         };
     }
 
     componentDidMount() {
-        axios.get(`/api/users/${this.props.userId}/orders`)
+        axios.get(`/api/users/${this.props.user.id}/orders`)
             .then(res => res.data)
             .then(orders => this.setState({ orders }))
             .catch(err => console.error(err))
     }
 
     render(props) {
-        const { orders } = this.props.orders;
+        const { orders } = this.state;
         return (
             <div className="orderHistory">{
                 orders.map(order => (
                     <div className="orderHistory-order" key={order.id}>{
-                        order.items.map(item => (<Item item={item} key={item.id} placed={true} />))
+                        order.products.map(item => (<HistoryItem item={item} key={item.id} />))
                     }</div>
                 ))
             }</div>
@@ -35,7 +35,7 @@ class OrderHistory extends Component {
 
 const mapState = state => {
     return {
-        orders: state.orders
+        user: state.user
     };
 }
 

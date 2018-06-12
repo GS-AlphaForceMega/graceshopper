@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar.jsx'
 import Cart from './components/Cart.jsx'
 import { Route, Redirect } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm.jsx'
+import OrderHistory from './components/OrderHistory.jsx'
 
 // const App = () => {
 //   return (
@@ -40,6 +41,7 @@ const App = () => {
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/order/history" component={OrderHistory} />
         {/* <Route component={AllProducts} /> */}
       </div>
     </div>

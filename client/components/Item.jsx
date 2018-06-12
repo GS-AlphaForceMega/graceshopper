@@ -23,11 +23,11 @@ const Item = (props) => {
                 </div>
             </Link>
             <h2>{item.quantity}</h2>
-            {!props.placed ? (<div className="item-buttons">
+            <div className="item-buttons">
                 <button onClick={() => props.increaseTheCart(userId, orderId, itemId)}>+</button>
                 <button onClick={() => props.decreaseTheCart(userId, orderId, itemId)}>-</button>
                 <button onClick={() => props.removeFromCart(userId, orderId, itemId)} >Remove</button>
-            </div>) : null}
+            </div>
         </div>
     )
 }

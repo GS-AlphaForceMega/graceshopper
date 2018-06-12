@@ -29,7 +29,10 @@ router.get('/:id/orders', (req, res, next) => {
     Order.findAll({
       where: {
         userId: req.params.id
-      }
+      },
+      include: [{
+        model: Product
+      }]
     })
       .then(orders => res.json(orders))
       .catch(next);
@@ -80,13 +83,13 @@ router.get('/:id/orders/cart', (req, res, next) => {
 
 router.post('/:id/orders', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
-  const { orderId, productId, /* quantity*/ } = req.body;
+  const { orderId, productId, quantity } = req.body;
   let findOrder = Order.findById(orderId);
   let findProduct = Product.findById(productId);
   return Promise.all([findOrder, findProduct])
   .then(([order, product]) => {
     //REWRITE THE QUANTITY
-    return order.addProduct(product,{ through: { quantity: 1 }})
+    return order.addProduct(product,{ through: { quantity: quantity }})
   })
   .then(() => {
     return Order.findById(orderId, {
