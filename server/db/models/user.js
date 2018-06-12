@@ -4,8 +4,7 @@ const db = require('../db')
 
 const User = db.define('user', {
   name: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   },
   email: {
     type: Sequelize.STRING,
@@ -36,9 +35,9 @@ const User = db.define('user', {
   //     return () => this.getDataValue('salt')
   //   }
   // },
-  // googleId: {
-  //   type: Sequelize.STRING
-  // }
+  googleId: {
+    type: Sequelize.STRING
+  }
 })
 
 module.exports = User
