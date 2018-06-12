@@ -38,7 +38,7 @@ export const fetchCart = (userId) =>
 
 export const fillCart = (userId, orderId, productId /*,quantity*/) =>
     dispatch => 
-        axios.post(`/api/users/${userId}/orders`, {orderId, productId, /*, quantity*/})
+        axios.post(`/api/users/${userId}/orders`, {orderId, productId /*, quantity*/})
     .then(order => dispatch(addToCart(order.data, 1 /*quantity*/)))
 
         .catch(err => console.error(err))
