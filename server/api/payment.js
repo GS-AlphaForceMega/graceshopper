@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const configureStripe = require('stripe');
 
-const {STRIPE_SECRET_KEY} = require('../../secrets')
+const {STRIPE_SECRET_KEY} = require('../../secrets').env.stripe;
 
 
 const stripe = configureStripe(STRIPE_SECRET_KEY);
