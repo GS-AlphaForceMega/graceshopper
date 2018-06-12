@@ -2,9 +2,6 @@ const db = require('../db');
 const Sequelize = require('sequelize');
 
 const Order = db.define('order', {
-    items: {
-        type: Sequelize.ARRAY(Sequelize.JSON) // [ item = { id, quantity, price } ]
-    },
     placed: {
         type: Sequelize.BOOLEAN,
         defaultValue: false

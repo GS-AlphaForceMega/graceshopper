@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchProduct } from '../../store/currentProduct';
-import { fetchCart, fillCart } from '../../store/cart'
-
-// import {Link} from 'react-router-dom'
+import { fillCart } from '../../store/cart'
 
 
 class SingleProduct extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
         this.props.getProduct(Number(this.props.match.params.productId))
     }
 
+    handleClick(evt) {
+        this.props.addProduct(this.props.user.id, this.props.order, this.props.product.id);
+    }
     render() {
         const productId = this.props.match.params.productId;
         const createOptions = (optionsNumber) => {
@@ -22,12 +24,11 @@ class SingleProduct extends Component {
             let finalOptions = new Array(optionsNumber).fill(1);
             return finalOptions.map(option => {
                 i += 1;
-                return (<option>{i}</option>);
+                return (<option key={i} >{i}</option>);
             });
         }
 
         return (
-<<<<<<< HEAD
             <div>
                 {
                     this.props.product.name ?
@@ -38,7 +39,7 @@ class SingleProduct extends Component {
                                 <div className="single-product-details-item"><p>{this.props.product.description}</p></div>
                                 <div className="single-product-details-item"><h3>${this.props.product.price}</h3></div>
                                 <div className="single-product-details-item"><h3>{this.props.product.quantity} Items available!</h3></div>
-                                <div><button onClick={handleClick}>Add To Cart</button></div>
+                                <div><button onClick={this.handleClick}>Add To Cart</button></div>
                                 <div>
                                     <select>
                                         {
@@ -51,43 +52,22 @@ class SingleProduct extends Component {
                         : (<h3>Product not found.</h3>)
                 }
             </div >
-=======
-            <div className="singleProduct">{
-                this.props.product.name ?
-                    (<div className="singleProduct-display">
-                        {console.log('single producttttttttttt',this.props)}
-                        <img className="singleProduct-image" src={this.props.product.imageUrl} />
-                        <div>
-                            <h3>{this.props.product.name}</h3>
-                            <p>{this.props.product.description}</p>
-                            <h3>{this.props.product.price}</h3>
-                            <p>{this.props.product.review}</p>
-                        </div>
-                        <button onClick={handleClick}>Add To Cart</button>
-                    </div>)
-                : (<h3>Product not found.</h3>)
-            }</div>
->>>>>>> master
         )
     }
-
-}
-
-
-function handleClick(evnt) {
-    const userCart = fetchCart(this.props.user.id);
 }
 
 const mapState = state => {
     return {
         isLoggedIn: !!state.user.id,
-        user: state.user,
         product: state.currentProduct,
+        order: state.order,
+        user: state.user
     }
 }
 const mapDispatch = dispatch => {
     return {
-        getProduct: (productId) => dispatch(fetchProduct(productId))
+        getProduct: (productId) => dispatch(fetchProduct(productId)),
+        addProduct: (userId, orderId, productId) => dispatch(fillCart(userId, orderId, productId))
     }
 }
 

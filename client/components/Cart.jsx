@@ -11,6 +11,7 @@ class Cart extends Component  {
     render(){
         return (
             <div className="cart">
+            {console.log(this.props.cart)}
                 <div className="all-items">
                     {
                         this.props.cart.map(item => {
@@ -19,7 +20,7 @@ class Cart extends Component  {
                     }
                 </div>
                 <h1>Cart Total: ${this.props.cart.reduce((sum, item) => {
-                    let number = sum + (item.product.price * item.quantity)
+                    let number = Number(sum) + (Number(item.product.price) * Number(item.quantity))
                     return Number.parseFloat(number).toFixed(2)
                 }, 0)}</h1>
 

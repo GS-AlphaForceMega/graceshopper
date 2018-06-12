@@ -24,7 +24,6 @@ export const increaseInCart = (productId) => ({type: INCREASE_IN_CART, productId
 export const decreaseInCart = (productId) => ({type: DECREASE_IN_CART, productId})
 export const removeFromCart = (productId) => ({type: REMOVE_FROM_CART, productId})
 
-
 /**
  * THUNK CREATORS
  */
@@ -36,11 +35,12 @@ export const fetchCart = (userId) =>
             dispatch(setOrder(order.data.orderId))
         })
         .catch(err => console.error(err))
-        
-export const fillCart = (userId, orderId, productId, quantity) =>
+
+export const fillCart = (userId, orderId, productId /*,quantity*/) =>
     dispatch => 
-        axios.post(`/api/users/${userId}/orders`, {orderId, productId})
-        .then(order => dispatch(addToCart(order, quantity)))
+        axios.post(`/api/users/${userId}/orders`, {orderId, productId, /*, quantity*/})
+    .then(order => dispatch(addToCart(order.data, 1 /*quantity*/)))
+
         .catch(err => console.error(err))
 
 export const increaseCart = (userId, orderId, productId) =>
@@ -71,7 +71,6 @@ export default function (state = defaultCart, action) {
     case ADD_TO_CART:
         return [...state, {product: action.product, quantity: action.quantity}]
     case INCREASE_IN_CART:
-        console.log('increasingggggg', action)
         return state.map(something => {
             if (something.product.id === action.productId) {
               something.quantity++;

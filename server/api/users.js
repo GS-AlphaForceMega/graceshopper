@@ -47,20 +47,23 @@ router.get('/:id/orders/latest', (req, res, next) => {
     })
     .then(orders => {
       //if there is more than one unplaced order will return the most recent
-      return orders.reduce((currOrder, nextOrder) => {
-        return currOrder.createdAt > nextOrder.createdAt ? currOrder : nextOrder
-      }, {})
+      if (orders.length === 0) {
+        return Order.create({userId: Number(req.params.id)})
+      } else {
+        return orders.reduce((currOrder, nextOrder) => {
+          return currOrder.createdAt > nextOrder.createdAt ? currOrder : nextOrder
+        }, {})
+      }
     })
     .then(order => {
       //send the product and quantity of each to be set on the state, if it exists
-      if (!order.products) {
-        res.send(undefined)
-      } else {
-        let cart = order.products.map(product => {
+      let cart = []
+      if (order.products) {
+        cart = order.products.map(product => {
           return {product, quantity: product.orderProduct.quantity}
         });
-        res.send({cart, orderId: order.id});
       }
+      res.send({cart, orderId: order.id});
     })
     .catch(next);
     }
@@ -69,26 +72,35 @@ router.get('/:id/orders/latest', (req, res, next) => {
 //this should add to the through table with the right user and product and quantity
 //order.addProduct(product, through: {quantity: 1})
 
-router.post('/:userId/orders', (req, res, next) => {
-  // if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
-
+router.post('/:id/orders', (req, res, next) => {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
   const { orderId, productId } = req.body;
-  OrderProduct.create({
-    orderId,
-    productId,
-    quantity: 1
+  Order.findById(orderId)
+  .then(order => {
+    Product.findById(productId)
+    .then(product => {
+      return order.addProduct(product,{ through: { OrderProduct }})
+    })
+    .then(subOrder => {
+      console.log('suborder', subOrder[0][0])
+      res.send(subOrder[0][0])
+    })
   })
-  .then(subOrder => {
-    console.log('suborderrrrr', subOrder)
-    res.send(subOrder)
-  })
-  //   }
-  // else throw new Error('You are not authorized to view this user\'s order history.');
+  // OrderProduct.create({
+  //   orderId,
+  //   productId,
+  //   quantity: 1
+  // })
+  // .then(subOrder => {
+  //   console.log('suborder', subOrder)
+  //   res.send(subOrder)
+  // })
+    }
+  else throw new Error('You are not authorized to view this user\'s order history.');
 });
 
-router.put('/:userId/orders/increase', (req, res, next) => {
-  // if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
-      //fix this so you get productId off the body 
+router.put('/:id/orders/increase', (req, res, next) => {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
       const { orderId, productId } = req.body;
         OrderProduct.findOne({
           where: {
@@ -102,13 +114,12 @@ router.put('/:userId/orders/increase', (req, res, next) => {
         })
         .then(updatedSubOrder => res.send(updatedSubOrder))
     .catch(next);
-  //   }
-  // else throw new Error('You are not authorized to view this user\'s order history.');
+    }
+  else throw new Error('You are not authorized to view this user\'s order history.');
 });
 
-router.put('/:userId/orders/decrease', (req, res, next) => {
-  // if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
-      //fix this so you get productId off the body 
+router.put('/:id/orders/decrease', (req, res, next) => {
+  if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
       const { orderId, productId } = req.body;
         OrderProduct.findOne({
           where: {
@@ -122,20 +133,9 @@ router.put('/:userId/orders/decrease', (req, res, next) => {
         })
         .then(updatedSubOrder => res.send(updatedSubOrder))
     .catch(next);
-  //   }
-  // else throw new Error('You are not authorized to view this user\'s order history.');
+    }
+  else throw new Error('You are not authorized to view this user\'s order history.');
 });
-
-
-// router.post('/', (req, res, next) => {
-//   const { name, password } = req.body;
-//   User.create({
-//     name,
-//     password
-//   })
-//     .then(user => res.status(201).send(user))
-//     .catch(next);
-// });
 
 router.put('/:id', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {

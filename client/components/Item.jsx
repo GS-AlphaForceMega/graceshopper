@@ -40,9 +40,7 @@ const mapState = state => {
   }
 const mapDispatch = dispatch => {
     return {
-        increaseTheCart: (userId, orderId, productId) => {
-            console.log('calling increasecart',userId, orderId, productId);
-            dispatch(increaseCart(userId, orderId, productId))},
+        increaseTheCart: (userId, orderId, productId) => dispatch(increaseCart(userId, orderId, productId)),
         decreaseTheCart: (userId,orderId, productId) => dispatch(decreaseCart(userId, orderId, productId))
     }
 }
