@@ -75,14 +75,26 @@ router.get('/:id/orders/latest', (req, res, next) => {
 router.post('/:id/orders', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
   const { orderId, productId } = req.body;
-  OrderProduct.create({
-    orderId,
-    productId,
-    quantity: 1
+  Order.findById(orderId)
+  .then(order => {
+    Product.findById(productId)
+    .then(product => {
+      return order.addProduct(product,{ through: { OrderProduct }})
+    })
+    .then(subOrder => {
+      console.log('suborder', subOrder[0][0])
+      res.send(subOrder[0][0])
+    })
   })
-  .then(subOrder => {
-    res.send(subOrder)
-  })
+  // OrderProduct.create({
+  //   orderId,
+  //   productId,
+  //   quantity: 1
+  // })
+  // .then(subOrder => {
+  //   console.log('suborder', subOrder)
+  //   res.send(subOrder)
+  // })
     }
   else throw new Error('You are not authorized to view this user\'s order history.');
 });

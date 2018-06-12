@@ -4,7 +4,7 @@ import { fetchProduct } from '../../store/currentProduct';
 import { fillCart } from '../../store/cart'
 
 
-class SingleProduct extends Component  {
+class SingleProduct extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -17,14 +17,14 @@ class SingleProduct extends Component  {
     handleClick(evt) {
         this.props.addProduct(this.props.user.id, this.props.order, this.props.product.id);
     }
-    render(){
+    render() {
         const productId = this.props.match.params.productId;
         const createOptions = (optionsNumber) => {
             let i = 0;
             let finalOptions = new Array(optionsNumber).fill(1);
             return finalOptions.map(option => {
                 i += 1;
-                return (<option>{i}</option>);
+                return (<option key={i} >{i}</option>);
             });
         }
 
@@ -58,10 +58,10 @@ class SingleProduct extends Component  {
 
 const mapState = state => {
     return {
-      isLoggedIn: !!state.user.id,
-      product: state.currentProduct,
-      order: state.order,
-      user: state.user
+        isLoggedIn: !!state.user.id,
+        product: state.currentProduct,
+        order: state.order,
+        user: state.user
     }
 }
 const mapDispatch = dispatch => {
