@@ -9,6 +9,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm.jsx'
 import  UserHome  from './components/UserHome.jsx';
 import OrderHistory from './components/OrderHistory.jsx'
+import Footer from './components/Footer.jsx'
 
 // const App = () => {
 //   return (
@@ -46,6 +47,7 @@ const App = () => {
         <Route exact path="/order/history" component={OrderHistory} />
         {/* <Route component={AllProducts} /> */}
       </div>
+      {/* <Footer /> */}
     </div>
   )
 }
