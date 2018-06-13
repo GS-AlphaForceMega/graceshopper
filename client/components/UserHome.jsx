@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OrderHistory from './OrderHistory.jsx';
+
 import { Segment, Button, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+
 
 /**
  * COMPONENT
@@ -17,7 +19,9 @@ export class UserHome extends Component {
     console.log(this.props);
     const { email, name, id, isAdmin } = this.props.user;
 
+
     if (!id) this.props.history.push('/')
+
 
     return (
       <div className="user-welcome">

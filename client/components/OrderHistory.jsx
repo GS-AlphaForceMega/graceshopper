@@ -20,6 +20,7 @@ export class OrderHistory extends Component {
 
     render(props) {
         const { orders } = this.state;
+        console.log(this.props)
         return (
             <div className="orderHistory">{
                 orders.length > 0 ?
