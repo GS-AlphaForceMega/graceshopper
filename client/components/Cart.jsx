@@ -21,19 +21,21 @@ class Cart extends Component {
                         this.props.cart.map(item => {
                             return <Item user={this.props.user} key={item.product.id} itemId={item.product.id} order={this.props.order} />
                         })
-                        : <h2>Your cart is currently empty</h2>
+                        : <h2>Your cart is currently empty.</h2>
                     }
                 </div>
                 <h1>Cart Total: ${total}</h1>
 
 
-                <Checkout
-                    name={'The best deals in your city'}
-                    description={'Enter valid email for getting tickets'}
-                    amount={total}
-                    orderId={this.props.order}
-                    userId={this.props.user.id}
-                />
+                {this.props.cart.length > 0 && (
+                    <Checkout
+                        name={'The best deals in your city'}
+                        description={'Enter valid email for getting tickets'}
+                        amount={total}
+                        orderId={this.props.order}
+                        userId={this.props.user.id}
+                    />
+                )}
 
             </div>
         )

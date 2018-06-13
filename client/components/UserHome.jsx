@@ -16,13 +16,14 @@ export class UserHome extends Component {
     console.log(this.props);
     const { email, name, id } = this.props.user;
 
+    if (!id) this.props.history.push('/')
+
     return (
-      <div>
+      <div className="user-welcome">
         <Segment padded>
-        <h2>Welcome,</h2>
-        <h1>   {name}!</h1>
-        <h3>{email}</h3>
-        <Divider horizontal>Your orders</Divider>
+          <h1>Welcome, {name}!</h1>
+          <h3>{email}</h3>
+          <Divider horizontal>Your orders</Divider>
         </Segment>
         <OrderHistory />
       </div>

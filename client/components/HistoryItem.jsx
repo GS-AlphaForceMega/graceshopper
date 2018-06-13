@@ -7,8 +7,8 @@ const HistoryItem = (props) => {
     console.log('@@@@@@@@@', props)
     const item = props.item;
     return (
-        <div className="item-div">
-            <Link to={`/products/${item.id}`}>
+        <Link to={`/products/${item.id}`}>
+            <div className="item-div">
                 <div className="item-div-preview">
                     <div className="item-div-image">
                         <img className="preview-img" src={item.imageUrl} />
@@ -19,12 +19,12 @@ const HistoryItem = (props) => {
                         <div className="item-div-details"><h2>Final Price: ${item.price}</h2></div>
                     </div>
                 </div>
-            </Link>
-            <div className="item-div-quantity">
-                <h4>Quantity:</h4>
-                <h2>{item.orderProduct.quantity}</h2>
+                <div className="item-div-quantity">
+                    <h4>Quantity:</h4>
+                    <h2>{item.orderProduct.quantity}</h2>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
 

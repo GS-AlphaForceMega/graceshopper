@@ -52,7 +52,7 @@ class AllProducts extends Component {
         {console.log('&&&&&&&&&&',this.props.user)}
             <Sidebar />
             <div>
-              <Link to='/order/history'>Order History</Link>
+              {/* <Link to='/order/history'>Order History</Link> */}
                 <div className="all-products">
                     {//check if there are any products if none go to last : for a message otherwise you will display products
                     this.props.products.length >= 1 ? (

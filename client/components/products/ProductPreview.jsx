@@ -9,7 +9,7 @@ const ProductPreview = (props) =>  {
                 </div>
                 <div className="product_details">
                     <div><h2>{product.name}</h2></div>
-                    <div><h3>Final Price: {product.price}</h3></div>
+                    <div><h3>Final Price: ${product.price}</h3></div>
                     <div><h3 id="availability">{product.availability ? (product.quantity > 5 ? '' : 'Just ' + product.quantity + ' left! Hurry up!')   : 'Deal Sold Out' }</h3></div>
                 </div>
             </div>
