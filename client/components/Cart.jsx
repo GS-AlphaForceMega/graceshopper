@@ -12,9 +12,16 @@ class Cart extends Component {
         super(props);
         this.state = {
             total: 0,
-            invalidCouponCode: false
+            invalidCouponCode: false,
+            couponInput: ''
         };
         this.enterPromoCode = this.enterPromoCode.bind(this);
+        this.handlechange = this.handlechange.bind(this);
+    }
+
+    handlechange(evt) {
+        evt.preventDefault();
+        this.setState({ couponInput: evt.target.value })
     }
 
     enterPromoCode(evt) {
@@ -33,6 +40,7 @@ class Cart extends Component {
             default:
                 this.setState({ invalidCouponCode: true });
         }
+        this.setState({ couponInput: '' })
     }
 
     componentDidMount() {
@@ -42,7 +50,7 @@ class Cart extends Component {
                 return Number.parseFloat(number).toFixed(2)
             }, 0)
         })
-        if (this.state.halfOffUsed) this.setState({ total: this.state.total / 2})
+        if (this.state.halfOffUsed) this.setState({ total: this.state.total / 2 })
     }
 
     render() {
@@ -72,7 +80,13 @@ class Cart extends Component {
                     <div id="promo-and-checkout">
                         <div id="promo-check">
                             <form id="promo-code-form" onSubmit={this.enterPromoCode}>
-                                <input type="text" name="couponCode" placeholder="Enter coupon code" />
+                                <input
+                                    type="text"
+                                    name="couponCode"
+                                    placeholder="Enter coupon code"
+                                    onChange={this.handlechange}
+                                    value={this.state.couponInput}
+                                />
                                 <input type="submit" value="Validate" />
                             </form>
                         </div>
