@@ -7,11 +7,10 @@ const session = require('express-session');
 const passport = require('passport');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./db');
-const sessionStore = new SequelizeStore({db});
+const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 8080;
 const app = express();
 const socketio = require('socket.io');
-const chalk = require('chalk');
 
 
 module.exports = app
@@ -50,9 +49,8 @@ const createApp = () => {
     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
     store: sessionStore,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-      cart: [],
       maxAge: 86400000
     }
   }))
@@ -77,16 +75,19 @@ const createApp = () => {
     }
   })
 
-  let sess;
-
   app.get('/', (req, res, next) => {
-    sess = req.session;
-  })
-
-  // sess.cookie.cart = [];
+    req.session.user = { id: req.sessionID };
+    req.session.cart = { items: []};
+    req.user = req.session.user;
+    app.post(`/api/users/${req.sessionID}/orders`, req.session.cart);
+  });
 
   app.get('/session', (req, res, next) => {
     res.json(req.session);
+  })
+
+  app.get('/req_user', (req, res, next) => {
+    res.json(req.user);
   })
 
   // sends index.html

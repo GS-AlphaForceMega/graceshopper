@@ -47,6 +47,7 @@ class SingleProduct extends Component {
                         (<div className="single-product">
                             <div><img src={this.props.product.imageUrl} /></div>
                             <div className="single-product-details">
+                                <div className="single-product-details-item"><h2>{this.props.product.restaurant.name}</h2></div>
                                 <div className="single-product-details-item"><h3>{this.props.product.name}</h3></div>
                                 <div className="single-product-details-item"><p>{this.props.product.description}</p></div>
                                 <div className="single-product-details-item"><h3>${this.props.product.price}</h3></div>

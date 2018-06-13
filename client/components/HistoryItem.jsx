@@ -7,19 +7,24 @@ const HistoryItem = (props) => {
     console.log('@@@@@@@@@', props)
     const item = props.item;
     return (
-        <div className="item">
-            <Link to={`/products/${item.id}`}>
-                <div className="item_image">
-                    <img className="preview-img" src={item.imageUrl} />
+        <Link to={`/products/${item.id}`}>
+            <div className="item-div">
+                <div className="item-div-preview">
+                    <div className="item-div-image">
+                        <img className="preview-img" src={item.imageUrl} />
+                    </div>
+                    <div className="item-div-details">
+                        <div className="item-div-details"><h2>{item.name}</h2></div>
+                        <div className="item-div-details"><h3>{item.description}</h3></div>
+                        <div className="item-div-details"><h2>Final Price: ${item.price}</h2></div>
+                    </div>
                 </div>
-                <div className="item_details">
-                    <div><h2>{item.name}</h2></div>
-                    <div><h2>Final Price: ${item.price}</h2></div>
-                    <div><h3>{item.description}</h3></div>
+                <div className="item-div-quantity">
+                    <h4>Quantity:</h4>
+                    <h2>{item.orderProduct.quantity}</h2>
                 </div>
-            </Link>
-            <h2>{item.orderProduct.quantity}</h2>
-        </div>
+            </div>
+        </Link>
     )
 }
 

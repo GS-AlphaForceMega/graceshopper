@@ -25,7 +25,9 @@ router.get('/', (req, res, next) => {
 // })
 
 router.get('/:id', (req, res, next) => {
-    Product.findById(req.params.id)
+    Product.findById(req.params.id, {
+        include: ['restaurant', 'reviews']
+    })
         .then(product => res.json(product))
         .catch(next);
 });

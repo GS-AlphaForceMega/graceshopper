@@ -76,7 +76,7 @@ export default function (state = defaultCart, action) {
         return [...state, {product: action.product, quantity: action.quantity}]
     case INCREASE_IN_CART:
         return state.map(subOrder => {
-            if (subOrder.product.id === action.productId) {
+            if (subOrder.product.id === action.productId && subOrder.quantity < subOrder.product.quantity) {
               subOrder.quantity++;
             }
             return subOrder;
