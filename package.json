@@ -23,6 +23,7 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.256.1",
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
     "chalk": "^2.4.1",

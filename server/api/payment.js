@@ -1,8 +1,12 @@
 const router = require('express').Router();
 const configureStripe = require('stripe');
 
-const {STRIPE_SECRET_KEY} = require('../../secrets').env.stripe;
+const aws = require('aws-sdk');
 
+let stripep = new aws.S3({
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+});
+const { STRIPE_SECRET_KEY } = stripep;
 
 const stripe = configureStripe(STRIPE_SECRET_KEY);
 
