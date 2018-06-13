@@ -70,6 +70,7 @@ class Cart extends Component {
                                     key={item.product.id}
                                     itemId={item.product.id}
                                     order={this.props.order}
+                                    // restaurant={item.product.restaurant}
                                     totalUpdate={this.componentDidMount.bind(this)}
                                 />
                             })

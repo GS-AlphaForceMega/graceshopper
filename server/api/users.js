@@ -13,6 +13,24 @@ router.get('/', (req, res, next) => {
     }
 });
 
+router.get('/orders/all', (req, res, next) => {
+  if (req.user && req.user.isAdmin === true) {
+    Order.findAll({
+      where: {
+        placed: true
+      },
+      include: [{
+        model: Product
+      }]
+    })
+      .then(orders => res.json(orders))
+      .catch(next);
+    }
+    else {
+      res.statusCode(402).send('You are not authorized to view this user\'s order history.');
+    }
+});
+
 router.get('/:id', (req, res, next) => {
   if (req.user && req.user.isAdmin === true || req.user && req.user.id === Number(req.params.id)) {
     User.findById(req.params.id)
