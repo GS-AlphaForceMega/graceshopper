@@ -317,3 +317,16 @@ h1:first-child{
   padding: 1rem;
   text-align: center;
 }
+
+#promo-and-checkout {
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#promo-check {
+  display: flex;
+  flex-direction: column;
+}

@@ -10,6 +10,7 @@ const Item = (props) => {
     })[0]
     const orderId = props.order;
     const userId = Number(props.user.id);
+    const totalUpdate = props.totalUpdate;
     return (
         <div className="item-div">
             <Link to={`/products/${item.product.id}`} className="item-div-preview">
@@ -24,8 +25,8 @@ const Item = (props) => {
             </Link>
             <div className="item-div-quantity-and-buttons">
                 <div className="item-div-buttons">
-                    <button onClick={() => props.increaseTheCart(userId, orderId, itemId)}>+</button>
-                    <button onClick={() => props.decreaseTheCart(userId, orderId, itemId)}>-</button>
+                    <button onClick={() => props.increaseTheCart(userId, orderId, itemId, totalUpdate)}>+</button>
+                    <button onClick={() => props.decreaseTheCart(userId, orderId, itemId, totalUpdate)}>-</button>
                     <button onClick={() => props.removeFromCart(userId, orderId, itemId)} >Remove</button>
                 </div>
                 <h2>{item.quantity}</h2>
@@ -46,8 +47,14 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
     return {
-        increaseTheCart: (userId, orderId, productId) => dispatch(increaseCart(userId, orderId, productId)),
-        decreaseTheCart: (userId, orderId, productId) => dispatch(decreaseCart(userId, orderId, productId)),
+        increaseTheCart: (userId, orderId, productId, update) => {
+            dispatch(increaseCart(userId, orderId, productId))
+                .then(() => update());
+        },
+        decreaseTheCart: (userId, orderId, productId, update) => {
+            dispatch(decreaseCart(userId, orderId, productId))
+            .then(() => update());
+        },
         removeFromCart: (userId, orderId, productId) => dispatch(removeCart(userId, orderId, productId))
     }
 }
