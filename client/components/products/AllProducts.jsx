@@ -37,7 +37,7 @@ class AllProducts extends Component {
     //if there is a search you want to filter the products, if not then dont
     if (searchBar.length >= 1) {
       filteredProducts = filteredProducts.filter(product => {
-        return product.name.includes(searchBar);
+        return product.name.toLowerCase().includes(searchBar.toLowerCase());
       });
     }
     if (cuisines.length >= 1) {
