@@ -11,7 +11,6 @@ const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 8080;
 const app = express();
 const socketio = require('socket.io');
-// import store from '../client/store';
 
 
 module.exports = app
@@ -78,14 +77,17 @@ const createApp = () => {
 
   app.get('/', (req, res, next) => {
     req.session.user = { id: req.sessionID };
-    req.session.cart = [];
-    store.user = req.session.user;
-    store.cart = req.session.cart;
-  })
-
+    req.session.cart = { items: []};
+    req.user = req.session.user;
+    app.post(`/api/users/${req.sessionID}/orders`, req.session.cart);
+  });
 
   app.get('/session', (req, res, next) => {
     res.json(req.session);
+  })
+
+  app.get('/req_user', (req, res, next) => {
+    res.json(req.user);
   })
 
   // sends index.html
