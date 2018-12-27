@@ -1,5 +1,5 @@
 
-# MealDeals  	                                                                                                           06/18 
+# MealDeals  	                                                                                                           
 *Online e-commerce platform similar to Amazon.com*
 
 Deployed App Link: [https://meal-deals.herokuapp.com/](https://meal-deals.herokuapp.com/)
