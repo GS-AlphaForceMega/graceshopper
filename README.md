@@ -1,12 +1,11 @@
 
 # MealDeals  	                                                                                                           06/18 
 *Online e-commerce platform similar to Amazon.com
-Node, Express, PostgreSQL, Sequelize, React, Redux, Stripe*
-
 
 Deployed App Link: [https://meal-deals.herokuapp.com/](https://meal-deals.herokuapp.com/)
 
-
+## Tools
+Node, Express, PostgreSQL, Sequelize, React, Redux, Stripe*
 
 ## Boilermaker
 
